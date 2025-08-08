@@ -1,5 +1,5 @@
-import rederLoginPage from "./pages/login.js";
+import renderLoginPage from "./pages/login.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    rederLoginPage();
-})
+document.addEventListener('DOMContentLoaded', () => { 
+    renderLoginPage();
+});

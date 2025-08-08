@@ -1,0 +1,11 @@
+input{
+    border-style: solid ;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+
+.btn-primary:hover{
+    background-color: rgb(43, 90, 143);
+    border-color: rgb(50, 90, 153);
+}

@@ -17,5 +17,8 @@
     "react"
   ],
   "author": "Thayson Sousa",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
 }
