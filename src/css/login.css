@@ -1,11 +1,12 @@
 input{
     border-style: solid ;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    
 }
 
 
 .btn-primary:hover{
-    background-color: rgb(43, 90, 143);
-    border-color: rgb(50, 90, 153);
+    background-color: rgb(3, 65, 136);
+    border:none;
 }

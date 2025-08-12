@@ -1,6 +1,16 @@
 import LoginForm from "../components/loginForm.js";
+import Navbar from "../components/NavBar.js";
 
 export default function renderLoginPage() { 
+    
+    const nav = document.getElementById('navbar');
+    nav.innerHTML = '';
+
+
+    const navbar = Navbar();
+    nav.appendChild(navbar);
+
+    
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
