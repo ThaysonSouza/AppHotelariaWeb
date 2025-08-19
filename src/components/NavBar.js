@@ -1,8 +1,8 @@
-export default function Navbar(){
-    const navbar = document.createElement('div');
-    /*manipula o DOM*/ 
-    navbar.innerHTML =
-`    
+export default function Navbar() {
+  const navbar = document.createElement('div');
+  /*manipula o DOM*/
+  navbar.innerHTML =
+    `    
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="../public/home.hmtl">
@@ -43,6 +43,6 @@ export default function Navbar(){
   </div>
 </nav>`;
 
-return navbar;
+  return navbar;
 
 }

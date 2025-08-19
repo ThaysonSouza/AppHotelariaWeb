@@ -1,4 +1,3 @@
-// src/components/LoginForm.js
 export default function LoginForm() {
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
@@ -19,7 +18,7 @@ export default function LoginForm() {
     // Cria o formulário
     const formulario = document.createElement('form');
     formulario.className = 'd-flex flex-column';
-    
+
     // Campo de email
     const email = document.createElement('input');
     email.type = 'email';
@@ -40,8 +39,8 @@ export default function LoginForm() {
     btn.textContent = "Entrar";
     btn.className = 'btn btn-primary';
 
-    formulario.appendChild(btn); 
+    formulario.appendChild(btn);
     container.appendChild(formulario);
-    
+
     return container; // Retorna o container com todo o conteúdo
 }

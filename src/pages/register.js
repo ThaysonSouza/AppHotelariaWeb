@@ -15,7 +15,7 @@ export default function renderRegisterPage() {
 
     // Obtém o formulário base do LoginForm
     const loginFormContainer = LoginForm();
-    
+
     // Modifica o título
     const titulo = loginFormContainer.querySelector('h1');
     titulo.textContent = 'Crie sua conta';
