@@ -1,5 +1,3 @@
-
-
 export default function Navbar(){
     const navbar = document.createElement('div');
     /*manipula o DOM*/ 

@@ -1,22 +1,16 @@
-import LoginForm from "../components/loginForm.js";
-import Navbar from "../components/NavBar.js";
+import LoginForm from "../components/LoginForm.js";
+import Navbar from "../components/Navbar.js";
 
-export default function renderLoginPage() { 
-    
+export default function renderLoginPage() {
+
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-
 
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
-
-    const titulo = document.createElement('h1');
-    titulo.textContent = 'Faça login ou crie uma conta';
-    titulo.className = 'titulo';
 
     //Dentro de divRoot terá uma div chamada container e em container estará o formulario
     const container = document.createElement('div');
@@ -26,7 +20,7 @@ export default function renderLoginPage() {
     divRoot.appendChild(container); //divRoot contém a nova div
 
     const formulario = LoginForm();
-    
+
     container.appendChild(titulo);
     container.appendChild(formulario); //Nova div container, já dentro de divRoot, contém o form
 }
