@@ -1,46 +1,46 @@
 export default function LoginForm() {
+
+
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
-    // Cria o container do card
+    //cria o container do card
     const container = document.createElement('div');
     container.className = 'card p-4 shadow-lg';
     container.style.width = '100%';
     container.style.maxWidth = '400px';
     divRoot.appendChild(container);
 
-    // Adiciona o título
+    //adiciona o titulo
     const titulo = document.createElement('h1');
-    titulo.textContent = 'Faça login';
+    titulo.textContent = 'Log in ';
     titulo.className = 'titulo text-center mb-4';
     container.appendChild(titulo);
 
-    // Cria o formulário
+    //cria o formulario
     const formulario = document.createElement('form');
     formulario.className = 'd-flex flex-column';
 
-    // Campo de email
+    //cria o campo de email
     const email = document.createElement('input');
     email.type = 'email';
-    email.placeholder = "Digite seu e-mail";
-    email.className = 'form-control mb-3';
+    email.placeholder = "your e-mail";
     formulario.appendChild(email);
 
-    // Campo de senha
+    //cria o campo de senha
     const password = document.createElement('input');
     password.type = 'password';
-    password.placeholder = "Digite sua senha";
-    password.className = 'form-control mb-3';
+    password.placeholder = "your password";
     formulario.appendChild(password);
 
-    // Botão de submit
+    //cria o botao de submit
     const btn = document.createElement('button');
     btn.type = 'submit';
-    btn.textContent = "Entrar";
+    btn.textContent = "To enter!";
     btn.className = 'btn btn-primary';
 
     formulario.appendChild(btn);
     container.appendChild(formulario);
 
-    return container; // Retorna o container com todo o conteúdo
+    return container;//retorna o container com todo conteudo
 }

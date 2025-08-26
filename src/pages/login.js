@@ -1,26 +1,21 @@
-import LoginForm from "../components/LoginForm.js";
+import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
 
 export default function renderLoginPage() {
-
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
-
-    //Dentro de divRoot terá uma div chamada container e em container estará o formulario
-    const container = document.createElement('div');
-    container.className = 'card p-4 shadow-lg'; //Classe do Bootstrap para criar um card
-    container.style.width = '100%'; //Aplicada a largura de 100% na div container pra ocupar a tela
-    container.style.maxWidth = '400px'; //Até que atinja o máximo de 400px
-    divRoot.appendChild(container); //divRoot contém a nova div
-
     const formulario = LoginForm();
 
-    container.appendChild(titulo);
-    container.appendChild(formulario); //Nova div container, já dentro de divRoot, contém o form
+    // Adiciona o link para a página de cadastro
+    const btnVoltar = document.createElement('a');
+    btnVoltar.textContent = "Register";
+    btnVoltar.href = "#/cadastro";
+    btnVoltar.className = 'btn btn-link mt-2';
+    btnVoltar.style.textDecoration = 'none';
+
+    formulario.appendChild(btnVoltar);
+
 }

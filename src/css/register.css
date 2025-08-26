@@ -1,0 +1,81 @@
+/*Paleta de Cores Roxa*/
+:root {
+    --primary-color: #4A148C;   /* Roxo escuro */
+    --primary-dark: #2E0854;    /* Roxo mais fechado */
+    --accent-color: #9C27B0;    /* Roxo vibrante */
+    --secondary-color: #6A1B9A; /* Roxo médio */
+    --link-color: #43064e;      /* Roxo vibrante extra */
+    --focus-shadow: rgba(156, 39, 176, 0.25);
+}
+
+/*Estilização do Card*/
+.card {
+    border: none !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*Título */
+.titulo {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+/*Inputs*/
+input {
+    border-style: solid;
+    border-color: var(--accent-color);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 0 0.2rem var(--focus-shadow);
+}
+
+/*Botão principal*/
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 12px 20px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/*Botão secundário (link)*/
+.btn-link {
+    color: var(--link-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}

@@ -1,57 +1,47 @@
-// src/pages/Register.js
-import LoginForm from '../components/LoginForm.js';
-import Navbar from '../components/Navbar.js';
+import LoginForm from "../components/loginForm.js";
+import Navbar from "../components/Navbar.js";
 
 export default function renderRegisterPage() {
-    // Renderiza a navbar
+    //Renderiza a navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    // Limpa e prepara a área de conteúdo
-    const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
-
-    // Obtém o formulário base do LoginForm
+    //Obtém o fomrulário base de LoginForm
     const loginFormContainer = LoginForm();
 
-    // Modifica o título
+    //Modifica o titulo
     const titulo = loginFormContainer.querySelector('h1');
-    titulo.textContent = 'Crie sua conta';
+    titulo.textContent = 'Dont you have an account?';
+    titulo.textContent = 'Create your account!';
+    titulo.className = 'titulo';
+    titulo.style.textAlign = 'center';
 
-    // Obtém o formulário e o botão
     const formulario = loginFormContainer.querySelector('form');
     const btnSubmit = loginFormContainer.querySelector('button');
-    btnSubmit.textContent = "Cadastrar";
+    btnSubmit.textContent = 'Register';
 
-    // Adiciona campo Nome
+    // Adiciona o campo de 'Nome' antes do campo de e-mail
     const nome = document.createElement('input');
     nome.type = 'text';
-    nome.placeholder = "Digite seu nome";
+    nome.placeholder = "your name";
     nome.className = 'form-control mb-3';
-    formulario.insertBefore(nome, formulario.firstChild); // Coloca como primeiro campo
+    nome.required = true;
+    formulario.insertBefore(nome, formulario.firstChild); //Coloca antes dentro do formulario, como nome em primeiro
 
-    // Adiciona campo Confirmar Senha
-    const confirmPassword = document.createElement('input');
-    confirmPassword.type = 'password';
-    confirmPassword.placeholder = "Confirmar senha";
-    confirmPassword.className = 'form-control mb-3';
-    formulario.insertBefore(confirmPassword, btnSubmit); // Coloca antes do botão
+    // Adiciona o campo 'Confirmar Senha' após o campo de senha
+    const passwordConfirm = document.createElement('input');
+    passwordConfirm.type = 'password';
+    passwordConfirm.placeholder = "Confirm your password";
+    passwordConfirm.required = true;
+    formulario.insertBefore(passwordConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
 
-    // Adiciona link para voltar ao login
+    // Cria e adiciona o link para a página de login
     const btnVoltar = document.createElement('a');
-    btnVoltar.href = 'login.html';
-    btnVoltar.textContent = "Voltar ao Login";
-    btnVoltar.className = 'btn btn-link mt-2 text-center';
+    btnVoltar.textContent = "Back to login";
+    btnVoltar.href = "#/login";
+    btnVoltar.className = 'btn btn-link mt-2';
+    btnVoltar.style.textDecoration = 'none';
     formulario.appendChild(btnVoltar);
-
-    // Adiciona o formulário modificado ao root
-    divRoot.appendChild(loginFormContainer);
-
-    // Previne envio do formulário (apenas para demonstração)
-    formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log('Cadastro enviado!');
-    });
 }

@@ -1,12 +1,36 @@
-input{
-    border-style: solid ;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    
+/* Estilização do título */
+.titulo {
+    color: #4A148C; /* Roxo escuro */
 }
 
+.titulo::after {
+    background-color: #9C27B0; /* Roxo vibrante */
+}
 
-.btn-primary:hover{
-    background-color: rgb(3, 65, 136);
-    border:none;
+/* Inputs focados */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #9C27B0; /* Roxo vibrante */
+    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra lilás */
+}
+
+/* Botão principal */
+.btn-primary {
+    background-color: #4A148C; /* Roxo escuro */
+    border-color: #4A148C;
+}
+
+.btn-primary:hover {
+    background-color: #2E0854; /* Roxo mais fechado */
+    border-color: #2E0854;
+}
+
+/* Botão secundário */
+.btn-link {
+    color: #9C27B0; /* Roxo vibrante */
+}
+
+.btn-link:hover {
+    color: #6A1B9A; /* Roxo médio */
 }
