@@ -7,27 +7,28 @@ import renderHomePage from './pages/home.js';
 const routes = {
 
     "/login": renderLoginPage,
-    "/cadastro": renderRegisterPage,
+    "/register": renderRegisterPage,
     "/home": renderHomePage
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 
-//Obtém o caminho atual a partir do hash da URL
+//Obtém o caminho atual a partir do nome
 function getPath() {
-    //obetém o hash (ex. "#/login"), remove o # e tira espaços
-    const url = (location.hash || "").replace(/^#/, "").trim();
+    //Exemplo: obetém o /login
+    const url = (location.pathname || "").replace("/PrimeSite/", "/").trim();
+
     //retorna url se começar com "/", se não, retorna "/home" como padrão
     return url && url.startsWith("/") ? url : "/home"; //retorna url limpa
 }
 
 //Decide o que renderizar com base na rota atual
 function renderRoutes() {
-    const url = getPath(); //Lê a rota atual, ex: "/register"
+    const url = getPath(); //Lê a rota atual, ex: "/login"
     const render = routes[url] || routes["/home"]; //Busca esta rota no mapa
     render(); //Executa a funcção de render na pagina atual
 }
 
 
-window.addEventListener("hashchange", renderRoutes);
+
 //Renderizaçõo
 document.addEventListener('DOMContentLoaded', renderRoutes);

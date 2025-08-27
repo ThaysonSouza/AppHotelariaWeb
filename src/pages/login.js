@@ -12,7 +12,7 @@ export default function renderLoginPage() {
     // Adiciona o link para a página de cadastro
     const btnVoltar = document.createElement('a');
     btnVoltar.textContent = "Register";
-    btnVoltar.href = "#/cadastro";
+    btnVoltar.href = "register";
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
 

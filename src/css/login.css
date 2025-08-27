@@ -1,36 +1,120 @@
-/* Estilização do título */
-.titulo {
-    color: #4A148C; /* Roxo escuro */
+:root {
+    --primary-color: #6a1b9a; /* Roxo escuro */
+    --secondary-color: #ab47bc; /* Roxo médio */
+    --accent-color: #e1bee7; /* Roxo claro */
+    --dark-color: #4a148c; /* Roxo muito escuro */
+    --light-color: #f3e5f5; /* Cor clara */
 }
-
-.titulo::after {
-    background-color: #9C27B0; /* Roxo vibrante */
+ 
+/* Estilos base da página */
+body {
+    background-color: var(--light-color);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-
-/* Inputs focados */
+ 
+/* Card principal do formulário */
+.card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(106, 27, 154, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-width: 700px;
+    width: 100%;
+    margin: 20px auto; /* Margem para o card */
+}
+ 
+/* Efeito hover no card */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(106, 27, 154, 0.15);
+}
+ 
+/* Estilização dos inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+ 
+/* Focus nos inputs */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #9C27B0; /* Roxo vibrante */
-    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra lilás */
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(106, 27, 154, 0.15);
 }
-
+ 
+/* Estilização do título */
+.titulo {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 30px; /* Espaço para o sublinhado */
+    text-align: center;
+}
+ 
+.titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; /* Largura do sublinhado */
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+ 
 /* Botão principal */
 .btn-primary {
-    background-color: #4A148C; /* Roxo escuro */
-    border-color: #4A148C;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
 }
-
+ 
+/* Hover no botão */
 .btn-primary:hover {
-    background-color: #2E0854; /* Roxo mais fechado */
-    border-color: #2E0854;
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
-
-/* Botão secundário */
+ 
+/* Active no botão */
+.btn-primary:active {
+    transform: translateY(0);
+}
+ 
+/* Estilo para o botão secundário (Voltar ao Login) */
 .btn-link {
-    color: #9C27B0; /* Roxo vibrante */
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-
+ 
 .btn-link:hover {
-    color: #6A1B9A; /* Roxo médio */
+    color: var(--dark-color);
+    text-decoration: underline;
+}
+ 
+/* Campos de formulário */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
 }

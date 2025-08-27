@@ -40,7 +40,7 @@ export default function renderRegisterPage() {
     // Cria e adiciona o link para a página de login
     const btnVoltar = document.createElement('a');
     btnVoltar.textContent = "Back to login";
-    btnVoltar.href = "#/login";
+    btnVoltar.href = "login";
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
     formulario.appendChild(btnVoltar);

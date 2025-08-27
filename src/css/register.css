@@ -1,27 +1,26 @@
-/*Paleta de Cores Roxa*/
 :root {
-    --primary-color: #4A148C;   /* Roxo escuro */
-    --primary-dark: #2E0854;    /* Roxo mais fechado */
-    --accent-color: #9C27B0;    /* Roxo vibrante */
-    --secondary-color: #6A1B9A; /* Roxo médio */
-    --link-color: #43064e;      /* Roxo vibrante extra */
-    --focus-shadow: rgba(156, 39, 176, 0.25);
+    --primary-color: #6a1b9a; /* Roxo escuro */
+    --secondary-color: #ab47bc; /* Roxo médio */
+    --accent-color: #e1bee7; /* Roxo claro */
+    --dark-color: #4a148c; /* Roxo muito escuro */
+    --light-color: #f3e5f5; /* Cor clara */
 }
 
-/*Estilização do Card*/
+/* Estilização do card */
 .card {
     border: none !important;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(106, 27, 154, 0.1);
 }
 
-/*Título */
+/* Estilização do título */
 .titulo {
-    color: var(--primary-color);
+    color: var(--dark-color); /* Roxo escuro */
     font-weight: 700;
     font-size: 2.5rem;
     position: relative;
     padding-bottom: 30px;
+    text-align: center; /* Centraliza o título */
 }
 
 .titulo::after {
@@ -32,50 +31,55 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background-color: var(--accent-color);
+    background-color: var(--secondary-color); /* Roxo vibrante */
     border-radius: 5px;
 }
 
-/*Inputs*/
+/* Estilização dos inputs */
 input {
     border-style: solid;
-    border-color: var(--accent-color);
+    border-color: var(--secondary-color); /* Roxo vibrante */
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px 15px;
     transition: all 0.3s ease;
+    width: 100%; /* Garante que os inputs ocupem toda a largura */
 }
 
+/* Foco nos inputs */
 input:focus {
     outline: none;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 0 0 0.2rem var(--focus-shadow);
+    border: 2px solid var(--secondary-color); /* Roxo vibrante */
+    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra roxa */
 }
 
-/*Botão principal*/
+/* Botão principal */
 .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: var(--dark-color); /* Roxo escuro */
+    border-color: var(--dark-color);
+    color: white; /* Texto branco para contraste */
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     padding: 12px 20px;
+    width: 100%; /* Garante que o botão ocupe toda a largura */
 }
 
+/* Hover no botão principal */
 .btn-primary:hover {
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
+    background-color: #2E0854; /* Roxo mais fechado */
+    border-color: #2E0854;
     transform: translateY(-2px);
 }
 
-/*Botão secundário (link)*/
+/* Botão secundário (link) */
 .btn-link {
-    color: var(--link-color);
+    color: var(--secondary-color); /* Roxo vibrante */
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .btn-link:hover {
-    color: var(--secondary-color);
+    color: var(--primary-color); /* Roxo médio */
     text-decoration: underline;
 }
