@@ -10,7 +10,7 @@
             $result = $stmt->get_result();
 
             if($usuario = $result->fetch_assoc()){
-                if($usuario['senha'] === $senha){
+                if(PasswordController::validateHash($senha, $usuario['senha'] )){
                     unset($usuario['senha']);
                     return $usuario;
                 }
