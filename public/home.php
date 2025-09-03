@@ -1,6 +1,6 @@
 <?php
     require_once '../config/database.php';
-    require_once '../controllers/AuthController.php';
+    require_once '../controllers/authController.php';
     $title = "Home";
    //require_once 'utils/cabecalho.php';
 
@@ -9,7 +9,7 @@
     "senha"=>"987654321"
    ];
 
-   AuthController::login($connect, $data);
+   authController::login($connect, $data);
     
 ?>
 <h1>Home</h1>

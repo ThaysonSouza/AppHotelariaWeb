@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/../controllers/AuthController.php';
+require_once __DIR__ . '/../controllers/authController.php';
 if ($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = json_decode(file_get_contents('php://input'), true);
-    AuthController::login($connect, $data);
+    authController::login($connect, $data);
 }else{
     jsonResponse([
         'status'=>'erro',
