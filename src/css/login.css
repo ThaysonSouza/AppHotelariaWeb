@@ -1,11 +1,3 @@
-:root {
-    --primary-color: #6a1b9a; /* Roxo escuro */
-    --secondary-color: #ab47bc; /* Roxo médio */
-    --accent-color: #e1bee7; /* Roxo claro */
-    --dark-color: #4a148c; /* Roxo muito escuro */
-    --light-color: #f3e5f5; /* Cor clara */
-}
- 
 /* Estilos base da página */
 body {
     background-color: var(--light-color);

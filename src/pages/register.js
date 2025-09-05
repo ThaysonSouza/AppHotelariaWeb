@@ -1,5 +1,6 @@
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/footer.js";
 
 export default function renderRegisterPage() {
     //Renderiza a navbar
@@ -7,6 +8,11 @@ export default function renderRegisterPage() {
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
+
+    const rodape = document.getElementById('rodape');
+    rodape.innerHTML = '';
+    const footer = Footer();
+    rodape.appendChild(footer);
 
     //Obtém o fomrulário base de LoginForm
     const loginFormContainer = LoginForm();
