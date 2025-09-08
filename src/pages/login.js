@@ -32,7 +32,6 @@ export default function renderLoginPage() {
 
         try {
             const result = await loginRequest(email, senha);
-            console.log("Login realizado com sucesso:" + result.token);
             saveToken(result.token)
             //window.location.href = "/home";
         }
