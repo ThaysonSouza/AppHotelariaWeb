@@ -8,7 +8,7 @@ export default function Footer() {
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
     <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
+      <span></span>
     </div>
     <!-- Left -->
 
@@ -26,8 +26,6 @@ export default function Footer() {
     </div>
     <!-- Right -->
   </section>
-  <!-- Section: Social media -->
-
   <!-- Section: Links  -->
   <section class="">
     <div class="container text-center text-md-start mt-5">
@@ -37,10 +35,10 @@ export default function Footer() {
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fas fa-gem me-3"></i>Nocturne Royal Company
           </h6>
           <p>
-            Historia da compan
+            Established in 2021, Nocturne Royal redefines luxury hospitality. Born from a vision of timeless elegance and modern refinement, Nocturne Royal offers more than a stay — it offers an experience. Since opening its doors, the hotel has become a sanctuary for those who seek serenity, sophistication, and impeccable service. Every detail, from its architectural grandeur to its curated ambiance, reflects a commitment to excellence and the art of quiet luxury.
           </p>
         </div>
         <!-- Grid column -->
@@ -56,9 +54,6 @@ export default function Footer() {
           </p>
           <p>
             <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
           </p>
           <p>
             <a href="#!" class="text-reset">Help</a>

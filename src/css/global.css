@@ -1,12 +1,17 @@
 :root {
-    --primary-color: #6a1b9a; /* Roxo escuro */
-    --secondary-color: #ab47bc; /* Roxo médio */
-    --accent-color: #e1bee7; /* Roxo claro */
-    --dark-color: #4a148c; /* Roxo muito escuro */
-    --light-color: #f3e5f5; /* Cor clara */
+    --primary-color: #6a1b9a;
+    /* Roxo escuro */
+    --secondary-color: #ab47bc;
+    /* Roxo médio */
+    --accent-color: #e1bee7;
+    /* Roxo claro */
+    --dark-color: #4a148c;
+    /* Roxo muito escuro */
+    --light-color: #f3e5f5;
+    /* Cor clara */
 }
 
-.titulo{
+.titulo {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -15,11 +20,37 @@
     margin-bottom: 30px;
 }
 
-.btn{
+.btn {
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 15px;
 }
 
-/**/
+#root {
+    flex-direction: column;
+}
+
+.hero-frame {
+    height: 60vh;
+    max-width: 1200px;
+    margin-top: 0 auto;
+    overflow: hidden;
+    /*impede que a imagem vaze do quadro*/
+    background-color: var(--light-color);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    /*Aplica propriedade cover para que a imagem preencha o quadro*/
+    object-fit: cover;
+    object-position: center;
+    /*centraliza o recorte da imagem*/
+}
+
+@media (max-width: 576px) {
+    .hero-frame {
+        height: 50vh;
+    }
+}

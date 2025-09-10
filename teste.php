@@ -3,7 +3,7 @@
     require_once __DIR__ . "/controllers/PasswordController.php";
 
    $data = [
-       "email" => "thayson.ssousa@gmail.com",
+       "email" => "thayson.silva@gmail.com",
       "senha" => 123 
    ];
 
@@ -16,11 +16,11 @@
     //    "preco" => 500   
     //];
 
-    //QuartoController::listarTodos($connect);
+    QuartoController::listarTodos($connect);
 
     //QuartoController::criar($connect, $data);
 
-    //QuartoController::buscarPorId($connect, $id = 1);
+    //QuartoController::buscarPorId($connect, $id = 4);
 
     //QuartoController::delete($connect, $id = 1);
 
@@ -32,7 +32,7 @@
     //echo var_dump(validateToken($tokenvalido));
     
     
-    //echo PasswordController::generateHash($data['senha']);
+    // echo PasswordController::generateHash($data['senha']);
     //$hash = '$2y$10$9Ky5vtX9L18PrnC0EN8bSeWsEqFaSCJg4fCpFZXwuS2RwJEZDIG/O';
     //echo "<br>";
     //echo PasswordController::validateHash($data ['senha'], $hash);
