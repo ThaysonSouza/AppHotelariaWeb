@@ -1,3 +1,4 @@
+import DataSelector from "../components/DataSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import RoomCard from "../components/RoomCard.js";
@@ -24,6 +25,9 @@ export default function renderHomePage() {
     const footer = Footer();
     rodape.appendChild(footer);
 
+    
+    // const dataSelec= DataSelector();
+    // divRoot.appendChild(dataSelec);
     
     
 

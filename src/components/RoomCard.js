@@ -12,10 +12,7 @@ export default function RoomCard() {
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="public/assets/images/suitePaulista.jpg" class="d-block w-100" alt="Vista da suíte Paulista">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suitePaulista2.jpg" class="d-block w-100" alt="Banheiro da suíte">
+              <img src="public/assets/images/suitePaulista2.jpg" class="d-block w-100" alt="Vista da suíte Paulista">
             </div>
             <div class="carousel-item">
               <img src="public/assets/images/suitePaulista3.jpg" class="d-block w-100" alt="Área de descanso">
@@ -52,10 +49,14 @@ export default function RoomCard() {
         <div id="carouselSuiteLuxo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="public/assets/images/suiteLuxo1.jpg" class="d-block w-100" alt="Suíte Luxo - Vista principal">
+              <img src="public/assets/images/suiteJunior.jpg" class="d-block w-100" alt="Suíte Luxo - Vista principal">
             </div>
             <div class="carousel-item">
-              <img src="public/assets/images/suiteLuxo2.jpg" class="d-block w-100" alt="Banheiro da suíte luxo">
+              <img src="public/assets/images/suiteJunior2.jpg" class="d-block w-100" alt="Banheiro da suíte luxo">
+            </div>
+          </div>
+          <div class="carousel-item">
+              <img src="public/assets/images/suiteJunior3.jpg" class="d-block w-100" alt="Banheiro da suíte luxo">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselSuiteLuxo" data-bs-slide="prev">
@@ -68,9 +69,9 @@ export default function RoomCard() {
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Suíte Luxo</h5>
+          <h5 class="card-title">Suíte Royal</h5>
           <p class="card-text">
-            Banheira panorâmica, vista para a cidade, minibar, iluminação ambiente, cama king-size e serviço exclusivo.
+Com sala de estar espaçosa, banheira de hidromassagem, chuveiro separado e comodidades como Nespresso, Smart TV, ar-condicionado, mesa de trabalho e Wi-Fi gratuito. Um refúgio elegante para quem valoriza conforto e exclusividade.
           </p>
           <a href="#" class="btn btn-primary w-100">Reservar</a>
         </div>

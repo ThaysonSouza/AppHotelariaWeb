@@ -31,26 +31,25 @@
     flex-direction: column;
 }
 
+/*hero section*/
 .hero-frame {
-    height: 60vh;
-    max-width: 1200px;
-    margin-top: 0 auto;
     overflow: hidden;
     /*impede que a imagem vaze do quadro*/
-    background-color: var(--light-color);
 }
 
-.hero-img {
-    width: 100%;
-    height: 100%;
-    /*Aplica propriedade cover para que a imagem preencha o quadro*/
-    object-fit: cover;
-    object-position: center;
-    /*centraliza o recorte da imagem*/
+.hero img,
+.hero {
+    /*Aplica propriedade cover para recortar a parte da imagem(e nao distorce la),
+    definindo seu ponto de foco a partir da propriedade object-position
+    object-fit: cover;*/
+    height: 70vh;
 }
 
+/*Responsividade media-query*/
 @media (max-width: 576px) {
-    .hero-frame {
+
+    .hero img,
+    .hero {
         height: 50vh;
     }
 }
