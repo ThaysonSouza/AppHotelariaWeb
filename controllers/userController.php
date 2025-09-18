@@ -1,11 +1,11 @@
- <?php
-require_once __DIR__ . "/../models/ClienteModel.php";
+<?php
+require_once __DIR__ . "/../models/UserModel.php";
 
-class ClienteController{
+class UserController{
     public static function criar($connect, $data){
-        $result = ClienteModel::criar($connect, $data);
+        $result = UsuarioModel::criar($connect, $data);
         if($result){
-            return jsonResponse(['message'=>"Cliente criado com sucesso"]);
+            return jsonResponse(['message'=>"Usuário criado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao criar"], 400);
 
@@ -14,20 +14,20 @@ class ClienteController{
     }
 
     public static function listarTodos($connect){
-        $listaClientes = ClienteModel::listarTodos($connect);
-        return jsonResponse($listaClientes);
+        $listaUsuarios = UsuarioModel::listarTodos($connect);
+        return jsonResponse($listaUsuarios);
 
     }
 
     public static function buscarPorId($connect, $id){
-        $buscaId = ClienteModel::buscarPorId($connect, $id);
+        $buscaId = UsuarioModel::buscarPorId($connect, $id);
         return jsonResponse($buscaId);
     }
 
     public static function delete($connect, $id){
-        $result = ClienteModel::deletar($connect, $id);
+        $result = UsuarioModel::deletar($connect, $id);
         if($result){
-            return jsonResponse(['message'=>"Cliente deletado com sucesso"]);
+            return jsonResponse(['message'=>"Usuário deletado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao deletar"], 400);
 
@@ -35,9 +35,9 @@ class ClienteController{
     }
 
     public static function atualizar($connect, $id, $data){
-        $result = ClienteModel::atualizar($connect, $id, $data);
+        $result = UsuarioModel::atualizar($connect, $id, $data);
         if($result){
-            return jsonResponse(['message'=>"Cliente atualizado com sucesso"]);
+            return jsonResponse(['message'=>"Usuário atualizado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao atualizar"], 400);
 

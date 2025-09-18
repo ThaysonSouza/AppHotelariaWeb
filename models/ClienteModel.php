@@ -13,7 +13,7 @@ class ClienteModel {
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
-    public static function criar($connect,data){
+    public static function criar($connect, $data){
         $MYsql = "INSERT INTO clientes(id_roles_fk, nome, email, cpf, telefone, senha)VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $connect->prepare($MYsql);
         $stmt->bind_param("isssss", 
@@ -28,13 +28,14 @@ class ClienteModel {
     public static function atualizar($connect, $id, $data){
         $MYsql = "UPDATE clientes SET id_roles_fk = ?, nome = ?, email = ?, cpf = ?, telefone = ?, senha = ? WHERE id = ?";
             $stmt = $connect->prepare($MYsql);
-            $stmt->bind_param("isssss", 
+            $stmt->bind_param("isssssi", 
             $data["id_roles_fk"],
             $data["nome"],
             $data["email"],
             $data["cpf"],
             $data["telefone"],
-            $data["senha"]);
+            $data["senha"],
+            $id);
             return $stmt->execute();
 
     }
