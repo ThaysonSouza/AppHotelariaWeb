@@ -22,8 +22,13 @@ $subRota = $seguimentos[1] ?? null;
 //(condiçao? true : false 
 
 if($rota != "api"){
+<<<<<<< HEAD
     // require __DIR__ . "/public/index.html";
      require "teste.php";
+=======
+    require __DIR__ . "/public/index.html";
+    // require "teste.php";
+>>>>>>> 5c07991c36180b6d54042ae66ebb93e9e89972a3
     exit;
 }
 

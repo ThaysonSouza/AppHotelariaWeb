@@ -14,13 +14,33 @@ class ClienteModel {
         return $stmt->get_result()->fetch_assoc();
     }
     public static function criar($connect, $data){
+<<<<<<< HEAD
         $MYsql = "INSERT INTO clientes(nome, email, cpf, telefone, senha)VALUES ( ?, ?, ?, ?, ?)";
         $stmt = $connect->prepare($MYsql);
         $stmt->bind_param("sssss", 
+=======
+        $MYsql = "INSERT INTO clientes(id_roles_fk, nome, email, cpf, telefone, senha)VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $connect->prepare($MYsql);
+        $stmt->bind_param("isssss", 
+        $data["id_roles_fk"],
+        $data["nome"],
+        $data["email"],
+        $data["cpf"],
+        $data["telefone"],
+        $data["senha"]);
+        return $stmt->execute();
+    }
+    public static function atualizar($connect, $id, $data){
+        $MYsql = "UPDATE clientes SET id_roles_fk = ?, nome = ?, email = ?, cpf = ?, telefone = ?, senha = ? WHERE id = ?";
+            $stmt = $connect->prepare($MYsql);
+            $stmt->bind_param("isssssi", 
+            $data["id_roles_fk"],
+>>>>>>> 5c07991c36180b6d54042ae66ebb93e9e89972a3
             $data["nome"],
             $data["email"],
             $data["cpf"],
             $data["telefone"],
+<<<<<<< HEAD
             $data["senha"]);
         return $stmt->execute();
     }
@@ -32,6 +52,8 @@ class ClienteModel {
             $data["email"],
             $data["cpf"],
             $data["telefone"],
+=======
+>>>>>>> 5c07991c36180b6d54042ae66ebb93e9e89972a3
             $data["senha"],
             $id);
             return $stmt->execute();

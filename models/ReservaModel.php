@@ -14,6 +14,7 @@
             return $stmt->get_result()->fetch_assoc(); 
         }
         public static function criar($connect, $data){
+<<<<<<< HEAD
             $MYsql = "INSERT INTO reservas(id_adicional_fk,	id_quarto_fk,	id_pedido_fk,	dataInicio,	dataFim )VALUES (?, ?, ?, ?, ?)";
             $stmt = $connect->prepare($MYsql);
             $stmt->bind_param("iid",
@@ -26,6 +27,18 @@
         }
         public static function atualizar($connect, $id, $data){
             $MYsql = "UPDATE reservas SET id_adicional_fk = ?, id_pedido_fk = ?, id_quarto_fk = ?, valor_total = ? WHERE id = ?";
+=======
+            $MYsql = "INSERT INTO reservas(id_pedido_fk, id_quarto_fk, valor_total)VALUES (?, ?, ?)";
+            $stmt = $connect->prepare($MYsql);
+            $stmt->bind_param("iid", 
+            $data["id_pedido_fk"],
+            $data["id_quarto_fk"],
+            $data["valor_total"]);
+            return $stmt->execute();
+        }
+        public static function atualizar($connect, $id, $data){
+            $MYsql = "UPDATE reservas SET id_pedido_fk = ?, id_quarto_fk = ?, valor_total = ? WHERE id = ?";
+>>>>>>> 5c07991c36180b6d54042ae66ebb93e9e89972a3
             $stmt = $connect->prepare($MYsql);
             $stmt->bind_param("iidi", 
             $data["id_pedido_fk"],
