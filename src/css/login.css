@@ -94,7 +94,7 @@ input[type="password"]:focus {
  
 /* Estilo para o botão secundário (Voltar ao Login) */
 .btn-link {
-    color: var(--secondary-color);
+    color:white;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;

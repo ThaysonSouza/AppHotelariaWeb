@@ -11,7 +11,7 @@ export default function renderHomePage() {
     nav.appendChild(navbar);
 
     const divRoot = document.getElementById('root')
-    root.innerHTML = '';
+    divRoot.innerHTML = '';
 
     const hero = Hero();
     divRoot.appendChild(hero);

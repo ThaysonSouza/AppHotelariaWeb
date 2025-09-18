@@ -1,6 +1,4 @@
 export default function LoginForm() {
-
-
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
