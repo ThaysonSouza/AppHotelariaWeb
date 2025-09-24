@@ -42,7 +42,10 @@ class QuartoController{
             return jsonResponse(['message'=>"Erro ao atualizar"], 400);
 
         }
-
+    }
+    public static function buscarDisponiveis($connect){
+        $buscaDisponiveis = QuartoModel::buscarDisponiveis($connect);
+        return jsonResponse($buscaDisponiveis);
     }
 
 }

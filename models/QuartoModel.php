@@ -46,8 +46,11 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute(); 
         }
-        public static function buscarDisponiveis($connect){
-            
+        public static function buscarDisponiveis($connect, $id){
+            $MYsql = "SELECT quartos.id, quartos.nome, quartos.numero,
+            quartos.camaCasal, quartos.camaSolteiro, quartos.preco
+            FROM quartos WHERE quartos.id NOT IN (
+            SELECT reservas.id_quarto_fk FROM reservas
+            WHERE reservas.dataInicio < '2025-10-30' AND reservas.dataFim > '2026-11-01')";
         }
-
     }?>

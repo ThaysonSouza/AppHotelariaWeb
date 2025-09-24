@@ -22,18 +22,13 @@ $subRota = $seguimentos[1] ?? null;
 //(condiçao? true : false 
 
 if($rota != "api"){
-<<<<<<< HEAD
     // require __DIR__ . "/public/index.html";
-     require "teste.php";
-=======
-    require __DIR__ . "/public/index.html";
-    // require "teste.php";
->>>>>>> 5c07991c36180b6d54042ae66ebb93e9e89972a3
+    require "teste.php";
     exit;
 }
 
 elseif($rota === "api"){
-    if (in_array ($subRota, ["login","room"])){
+    if (in_array ($subRota, ["login","room","user","cliente","adicional","pedido","reserva"])){
         require "routes/${subRota}.php";
     }else{
         return jsonResponse(['mensage'=>'rota nao encontrada'], 404);
