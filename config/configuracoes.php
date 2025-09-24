@@ -6,6 +6,6 @@ define("DB_USER","dbaHotel");
 define("DB_PASSWORD","dbaHotel123");
 define("DB_NAME","hotel");
 
-define("SECRET_KEY", "senha_dificil_123@")
+define("SECRET_KEY", "senha_dificil_123@");
 
 ?>
