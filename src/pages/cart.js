@@ -1,20 +1,25 @@
-import Header from "../components/header";
+import Navbar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
+import Grid from "../components/grid.js";
 
-export default function renderCartPage(){
-
+export default function renderCarPage() {
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
+
     const navbar = Navbar();
     nav.appendChild(navbar);
-    
-    const divRoot = document.getElementById('root')
+
+    const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
-    const header = Header();
-    header.appendChild(cabecalho);
+    const grid = Grid();
+    grid.style.marginTop = '10%';
+    divRoot.appendChild(grid);
 
+
+    const foot = document.getElementById('rodape');
+    foot.innerHTML = '';
+        
     const footer = Footer();
-    rodape.appendChild(footer);
-    
-
+    foot.appendChild(footer);
 }

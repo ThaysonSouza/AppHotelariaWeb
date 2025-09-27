@@ -1,24 +1,19 @@
 :root {
-    --primary-color: #6a1b9a;
-    /* Roxo escuro */
-    --secondary-color: #ab47bc;
-    /* Roxo médio */
-    --accent-color: #e1bee7;
-    /* Roxo claro */
-    --dark-color: #4a148c;
-    /* Roxo muito escuro */
-    --light-color: #f3e5f5;
-    /* Cor clara */
+    --primary-color: #6a1b9a; /* Roxo escuro */
+    --secondary-color: #ab47bc; /* Roxo medio */
+    --accent-color: #e1bee7; /* Roxo claro */
+    --dark-color: #4a148c; /* Roxo muito escuro */
+    --light-color: #f3e5f5; /* Cor clara */
+}
+body {
+    background-color: var(--light-color);
+    font-family: 'Inter', sans-serif; 
+    color: #333;
+}
+.titulo {
+    color: var(--dark-color);
 }
 
-.titulo {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 25px;
-    margin-bottom: 30px;
-}
 
 .btn {
     font-family: "Inter", sans-serif;
@@ -44,6 +39,40 @@
     object-fit: cover;*/
     height: 70vh;
 }
+#root {
+    min-height: 100vh;
+}
+
+.hero-section {
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.hero-section .carousel {
+    height: 100%;
+}
+
+.hero-section .carousel-inner {
+    height: 100%;
+}
+
+.hero-section .carousel-item {
+    height: 100%;
+}
+
+.hero-section .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-section .carousel-indicators {
+    bottom: 20px;
+}
 
 /*Responsividade media-query*/
 @media (max-width: 576px) {
@@ -52,4 +81,144 @@
     .hero {
         height: 50vh;
     }
+}
+
+
+/*NAVBAR*/
+.navbar-brand {
+    padding: 0.5rem 1rem; /* Espaçamento para o logo */
+}
+
+
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-item img {
+    object-fit: cover;
+    object-position: center;
+}
+
+.btn:focus, input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Estilos específicos para os containers */
+.room-cards-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    margin: 0;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.data-selector-container {  
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*cards de quartos */
+.room-cards-container .card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.room-cards-container .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.15);
+}
+
+.room-cards-container .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.room-cards-container .card-text {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.room-cards-container .btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.room-cards-container .btn:hover {
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    transform: scale(1.02);
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+    .room-cards-container, .data-selector-container {
+        padding: 1rem 0;
+    }
+    
+    .room-cards-container .card:hover,
+    .data-selector-container .card:hover {
+        transform: translateY(-3px);
+    }
+    
+    .card.p-4.shadow-lg {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    
+    .navbar-brand img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .hero-section {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .hero-section .carousel-control-prev,
+    .hero-section .carousel-control-next {
+        width: 8%;
+        margin: 0 10px;
+    }
+}
+
+/* Estilos para footer dentro do root */
+#rodape {
+    margin-top: auto;
+    flex-shrink: 0;
 }

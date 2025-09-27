@@ -1,16 +1,20 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
+require_once "DataController.php";
 
 class QuartoController{
+    
+    public static $labels = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco'];
+
     public static function criar($connect, $data){
+        DataController::issetData(self::$labels, $data);
+        
         $result = QuartoModel::criar($connect, $data);
         if($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao criar"], 400);
-
         }
-
     }
 
     public static function listarTodos($connect){
@@ -43,8 +47,8 @@ class QuartoController{
 
         }
     }
-    public static function buscarDisponiveis($connect){
-        $buscaDisponiveis = QuartoModel::buscarDisponiveis($connect);
+    public static function buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas){
+        $buscaDisponiveis = QuartoModel::buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas);
         return jsonResponse($buscaDisponiveis);
     }
 
