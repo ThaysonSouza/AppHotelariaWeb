@@ -33,4 +33,4 @@ function renderRoutes() {
 
 
 //Renderização
-document.addEventListener('DOMContentLoaded', renderRoutes);
+document.addEventListener('DOMContentLoaded', renderRoutes)
