@@ -1,84 +1,50 @@
-export default function RoomCard() {
-  const containerCard = document.createElement('div');
-  containerCard.className = 'room-cards-container';
+export default function RoomCard(index) {
+    const card = document.createElement('div');
+    card.className = "cardContainer";
+    card.innerHTML =
+    `
+    <div class="card" style="width: 18rem;">
+        <div id="carouselExampleIndicators-${index}" class="carousel slide">
+            <div class="carousel-indicators">
+                <button visually-hiddentype="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
   
-  // IDs únicos simples
-  const id1 = 'roomCarousel1';
-  const id2 = 'roomCarousel2';
+            <div class="carousel-inner shadow">
+                <div class="carousel-item active">
+                    <img src="public/assets/images/suitePaulista.jpg" class="d-block w-100" alt="...">
+                </div>
 
-  containerCard.innerHTML = `
-<div class="container my-4">
-  <div class="row g-4 justify-content-center">
+                <div class="carousel-item">
+                    <img src="public/assets/images/suitePaulista2.jpg" class="d-block w-100" alt="...">
+                </div>
 
-    <!-- Card 1: Suíte Elegance -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card shadow-sm rounded">
-        <div id="${id1}" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="public/assets/images/suitePaulista.jpg" class="d-block w-100" alt="Suíte Elegance" loading="lazy" style="height: 250px; object-fit: cover;">
+                <div class="carousel-item">
+                    <img src="public/assets/images/suitePaulista3.jpg" class="d-block w-100" alt="...">
+                </div>
             </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suitePaulista2.jpg" class="d-block w-100" alt="Suíte Elegance" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suitePaulista3.jpg" class="d-block w-100" alt="Suíte Elegance" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suitePaulista4.jpg" class="d-block w-100" alt="Suíte Elegance" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suitePaulista5.jpg" class="d-block w-100" alt="Suíte Elegance" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#${id1}" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#${id1}" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+ 
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="next">
+                <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
         </div>
+        
         <div class="card-body">
-          <h5 class="card-title">Suíte Elegance</h5>
-          <p class="card-text">Ambientes separados, banheira de hidromassagem, chuveiro independente, Nespresso, Smart TV, ar-condicionado, mesa de trabalho e Wi-Fi gratuito.</p>
-          <a href="#" class="btn btn-primary w-100">Reservar</a>
+            <h5 class="card-title">Suite Paulista</h5>
+            <p class="card-text">Descrição do quarto: Lorem ipsum dolor sit amet consectetur
+             adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
+            <a href="#" class="btn btn-primary">Reservar</a>
         </div>
-      </div>
     </div>
 
-    <!-- Card 2: Suíte Royal -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card shadow-sm rounded">
-        <div id="${id2}" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="public/assets/images/suiteJunior.jpg" class="d-block w-100" alt="Suíte Royal" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suiteJunior2.jpg" class="d-block w-100" alt="Suíte Royal" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="public/assets/images/suiteJunior3.jpg" class="d-block w-100" alt="Suíte Royal" loading="lazy" style="height: 250px; object-fit: cover;">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#${id2}" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#${id2}" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Suíte Royal</h5>
-          <p class="card-text">Sala de estar espaçosa, banheira de hidromassagem, chuveiro separado e comodidades como Nespresso, Smart TV, ar-condicionado, mesa de trabalho e Wi-Fi gratuito.</p>
-          <a href="#" class="btn btn-primary w-100">Reservar</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-`;
-
-  return containerCard;
-}; 
+    `;
+    return card;
+}

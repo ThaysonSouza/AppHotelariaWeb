@@ -110,3 +110,44 @@ input[type="password"]:focus {
     margin-bottom: 20px;
     position: relative;
 }
+
+.card.p-4.shadow-lg {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card.p-4.shadow-lg .titulo {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card.p-4.shadow-lg input {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.card.p-4.shadow-lg input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(106, 27, 154, 0.25);
+    background: white;
+}
+
+.card.p-4.shadow-lg .btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.card.p-4.shadow-lg .btn:hover {
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+}

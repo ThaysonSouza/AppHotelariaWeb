@@ -50,7 +50,7 @@ export function saveToken(token){
 
 /*Funçao para recuperar a chave a cada pagian que o usuario navegar*/
 export function getToken(){
-    return localStorage.setItem("auth_token");
+    return localStorage.getItem("auth_token");
 }
 
 /*Funçao para remover a chave token quando o usuario deslogar*/

@@ -1,6 +1,7 @@
 import renderLoginPage from './pages/login.js';
 import renderRegisterPage from './pages/register.js';
 import renderHomePage from './pages/home.js';
+import renderCarPage from './pages/cart.js';
 
 
 //Configuração de rotas
@@ -8,7 +9,8 @@ const routes = {
 
     "/login": renderLoginPage,
     "/register": renderRegisterPage,
-    "/home": renderHomePage
+    "/home": renderHomePage,
+    "/cart": renderCarPage
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 
@@ -30,5 +32,5 @@ function renderRoutes() {
 
 
 
-//Renderizaçõo
-document.addEventListener('DOMContentLoaded', renderRoutes);
+//Renderização
+document.addEventListener('DOMContentLoaded', renderRoutes)

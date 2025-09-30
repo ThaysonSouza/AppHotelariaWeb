@@ -1,19 +1,24 @@
- <?php
+<?php
 require_once __DIR__ . "/../models/ClienteModel.php";
 require_once "PasswordController.php";
+require_once "DataController.php";
 
 class ClienteController {
+    
+    public static $labels = ['nome', 'email', 'telefone', 'senha'];
+
     public static function criar($connect, $data){
-        //$data['senha'] = PasswordController::generateHash($data['senha']);
+        DataController::issetData(self::$labels, $data);
+        DataController::validateEmail($data['email']);
+        
+        $data['senha'] = PasswordController::generateHash($data['senha']);
         $result = ClienteModel::criar($connect, $data);
 
         if($result){
             return jsonResponse(['message'=>"Cliente criado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao criar"], 400);
-
         }
-
     }
 
     public static function listarTodos($connect){

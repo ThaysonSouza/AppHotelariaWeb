@@ -16,19 +16,23 @@ export default function renderHomePage() {
     const hero = Hero();
     divRoot.appendChild(hero);
 
-    const card =  RoomCard();
-    divRoot.appendChild(card);
+    const dateSelector = DataSelector();
+    divRoot.appendChild(dateSelector);
+
+    const cardsGroup = document.createElement('div');
+    cardsGroup.className = 'room-cards-container';
+    
+    for (var i = 0; i < 3; i++) {
+        const cards = RoomCard(i);
+        cardsGroup.appendChild(cards);
+    }
+    
+    divRoot.appendChild(cardsGroup);
 
     const rodape = document.getElementById('rodape');
     rodape.innerHTML = '';
 
     const footer = Footer();
     rodape.appendChild(footer);
-
-    
-    // const dataSelec= DataSelector();
-    // divRoot.appendChild(dataSelec);
-    
-    
 
 }
