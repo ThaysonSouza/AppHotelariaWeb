@@ -16,7 +16,6 @@ export default function renderLoginPage() {
 
     const formulario = LoginForm();
 
-
     //Pegando inputs e botao do form(email, senha e submit)
     const contentForm = formulario.querySelector('form');
     const inputEmail = contentForm.querySelector('input[type="email"]');

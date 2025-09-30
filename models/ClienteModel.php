@@ -44,5 +44,21 @@ class ClienteModel {
             return $stmt->execute(); 
         
     }
+    public static function clienteValidation($connect, $email, $senha) {
+        $sql = "SELECT clientes.id, clientes.email, clientes.senha, clientes.nome FROM clientes WHERE clientes.email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+ 
+        if($cliente = $result->fetch_assoc()) {
+        
+            if(PasswordController::validateHash($senha, $cliente['senha'])) {
+                unset($cliente['senha']);
+                return $cliente;  
+            }
 
+        return false;
+        }
+    }
 }?>

@@ -4,22 +4,16 @@ require_once "PasswordController.php";
 require_once "DataController.php";
 
 class ClienteController {
-    
-    public static $labels = ['nome', 'email', 'telefone', 'senha'];
-
-    public static function criar($connect, $data){
-        DataController::issetData(self::$labels, $data);
-        DataController::validateEmail($data['email']);
-        
+     public static function criar($connect, $data) {
         $data['senha'] = PasswordController::generateHash($data['senha']);
         $result = ClienteModel::criar($connect, $data);
-
-        if($result){
-            return jsonResponse(['message'=>"Cliente criado com sucesso"]);
-        }else{
-            return jsonResponse(['message'=>"Erro ao criar"], 400);
+        if ($result) {
+            return jsonResponse(['message' => 'Cliente criado com sucesso']);
+        } else {
+            return jsonResponse(['message' => 'Erro inesperado'], 400);
         }
     }
+    
 
     public static function listarTodos($connect){
         $listaClientes = ClienteModel::listarTodos($connect);
@@ -52,6 +46,28 @@ class ClienteController {
         }
 
     }
+    
+    public static function loginCliente($connect, $data) {
 
+        $data['email'] = trim($data['email']);
+        $data['senha'] = trim($data['senha']);
+ 
+        if (empty($data['email']) || empty($data['senha'])) {
+            return jsonResponse([
+                "status" => "erro",
+                "message" => "Preencha todos os campos!"
+            ], 401);
+        }
+    $cliente = ClienteModel::ClienteValidation($connect, $data['email'], $data['senha']);
+        if ($cliente) {
+            $token = createToken($cliente);
+            return jsonResponse([ "token" => $token ]);
+        } else {
+            return jsonResponse([
+                "status" => "erro",
+                "message" => "Credenciais inválidas!"
+            ], 401);
+        }    
+    }    
 }
 ?>

@@ -1,9 +1,10 @@
 import LoginForm from "../components/loginForm.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/footer.js";
+import { createRequest } from "../api/clienteAPI.js";
 
 export default function renderRegisterPage() {
-    //Renderiza a navbar
+    // Renderiza a navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     const navbar = Navbar();
@@ -14,40 +15,77 @@ export default function renderRegisterPage() {
     const footer = Footer();
     rodape.appendChild(footer);
 
-    //Obtém o fomrulário base de LoginForm
+    // Obtém o formulário base de LoginForm
     const loginFormContainer = LoginForm();
 
-    //Modifica o titulo
+    // Modifica o título
     const titulo = loginFormContainer.querySelector('h1');
-    titulo.textContent = 'Dont you have an account?';
     titulo.textContent = 'Create your account!';
     titulo.className = 'titulo';
     titulo.style.textAlign = 'center';
 
     const formulario = loginFormContainer.querySelector('form');
-    const btnSubmit = loginFormContainer.querySelector('button');
+    const btnSubmit = formulario.querySelector('button');
     btnSubmit.textContent = 'Register';
 
-    // Adiciona o campo de 'Nome' antes do campo de e-mail
-    const nome = document.createElement('input');
-    nome.type = 'text';
-    nome.placeholder = "your name";
-    nome.className = 'form-control mb-3';
-    nome.required = true;
-    formulario.insertBefore(nome, formulario.firstChild); //Coloca antes dentro do formulario, como nome em primeiro
+    // Cria campos extras
+    const inputNome = document.createElement('input');
+    inputNome.type = 'text';
+    inputNome.placeholder = "Your name";
+    inputNome.className = 'form-control mb-3';
+    inputNome.required = true;
 
-    // Adiciona o campo 'Confirmar Senha' após o campo de senha
+    const inputCPF = document.createElement('input');
+    inputCPF.type = 'text';
+    inputCPF.placeholder = "Your CPF";
+    inputCPF.className = 'form-control mb-3';
+    inputCPF.required = true;
+
+    const inputTelefone = document.createElement('input');
+    inputTelefone.type = 'text';
+    inputTelefone.placeholder = "Your phone";
+    inputTelefone.className = 'form-control mb-3';
+    inputTelefone.required = true;
+
+    const inputEmail = formulario.querySelector('input[type="email"]');
+    const inputSenha = formulario.querySelector('input[type="password"]');
+
+    formulario.insertBefore(inputNome, inputEmail);
+    formulario.insertBefore(inputCPF, inputEmail);
+    formulario.insertBefore(inputTelefone, inputEmail);
+
+    // Campo confirmar senha após a senha
     const passwordConfirm = document.createElement('input');
     passwordConfirm.type = 'password';
     passwordConfirm.placeholder = "Confirm your password";
+    passwordConfirm.className = 'form-control mb-3';
     passwordConfirm.required = true;
-    formulario.insertBefore(passwordConfirm, btnSubmit); //coloca como ultimo o campo confirma senha
+    formulario.insertBefore(passwordConfirm, btnSubmit);
 
-    // Cria e adiciona o link para a página de login
+    // Link voltar
     const btnVoltar = document.createElement('a');
     btnVoltar.textContent = "Back to login";
     btnVoltar.href = "login";
     btnVoltar.className = 'btn btn-link mt-2';
     btnVoltar.style.textDecoration = 'none';
     formulario.appendChild(btnVoltar);
+
+    //Monitorar o clique no botao para adicionar um evento de submeter os dados 
+    formulario.addEventListener("submit", async(e)=> {
+        e.preventDefault();
+        const nome = inputNome.value.trim();
+        const cpf = inputCPF.value.trim();
+        const telefone = inputTelefone.value.trim();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
+
+        try{
+            const result = createRequest(nome, cpf, telefone, email, senha);
+        }
+        catch{
+            console.log("Erro inesperado!");
+        }
+    });
+
+    return loginFormContainer;
 }
