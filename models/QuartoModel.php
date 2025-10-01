@@ -46,15 +46,18 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute(); 
         }
-        public static function buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas){
-            $sql =
-            " SELECT q.id, q.nome, q.camaCasal AS qtd_cama_casal, 
-            q.camaSolteiro AS qtd_cama_solteiro, q.preco, q.disponivel
-            FROM quartos q WHERE q.id NOT IN (
-            SELECT r.id_quarto_fk FROM reservas r WHERE (r.dataFim > ? AND r.dataInicio < ?))
-            AND q.disponivel = true AND ( (q.camaCasal * 2) + q.camaSolteiro ) >= ?;";
-            $stmt = $connect->prepare($sql);
-            $stmt->bind_param("ssi", $fim, $inicio, $qtdPessoas);
+        public static function buscarDisponiveis($connect, $data){
+            $MYsql =
+            " SELECT *
+            FROM quartos q WHERE q.disponivel = 1
+            AND (quartos.camaCasal * 2 + quartos.camaSolteiro) >= ?
+            AND quartos.id NOT IN (
+                SELECT reservas.fk_quarto_fk 
+                FROM reservas 
+                WHERE (reservas.dataInicio <= ? AND reservas.dataFim >= ?))";
+            $stmt = $connect->prepare($MYsql);
+            $stmt->bind_param("iss", $data["qtd"], $data["dataFim"], $data["dataInicio"] 
+            );
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }

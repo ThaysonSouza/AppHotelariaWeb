@@ -1,14 +1,19 @@
 <?php
 require_once __DIR__ . "/../models/ClienteModel.php";
 require_once "PasswordController.php";
-require_once "DataController.php";
+require_once __DIR__ . "/../controllers/AuthController.php";
 
 class ClienteController {
      public static function criar($connect, $data) {
+        $dados = [
+            "email" => $data["email"],
+            "senha" => $data["senha"]
+        ];
+
         $data['senha'] = PasswordController::generateHash($data['senha']);
         $result = ClienteModel::criar($connect, $data);
         if ($result) {
-            return jsonResponse(['message' => 'Cliente criado com sucesso']);
+            AuthController::loginCliente($connect, $dados);
         } else {
             return jsonResponse(['message' => 'Erro inesperado'], 400);
         }

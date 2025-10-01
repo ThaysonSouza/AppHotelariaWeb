@@ -4,11 +4,16 @@ require_once "DataController.php";
 
 class QuartoController{
     
-    public static $labels = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco'];
+    public static $labels = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco', 'disponivel'];
 
     public static function criar($connect, $data){
-        DataController::issetData(self::$labels, $data);
+        $validar = validadorController::issetData($data, self::$labels);
         
+        if( !empty($validar) ){
+            $dados = implode(", ", $validar);
+            return jsonResponse(['message'=>"Erro, Falta o campo: ".$dados], 400);
+        }
+
         $result = QuartoModel::criar($connect, $data);
         if($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
@@ -47,9 +52,14 @@ class QuartoController{
 
         }
     }
-    public static function buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas){
-        $buscaDisponiveis = QuartoModel::buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas);
-        return jsonResponse($buscaDisponiveis);
+    public static function buscarDisponiveis($connect, $data){
+        $result = QuartoModel::buscarDisponiveis($connect, $data);
+        if($result){
+            return jsonResponse(['Quartos'=>$result]);    
+        }else{
+            return jsonResponse(['message'=>'asdsfaf'],400)
+        }
+        
     }
 
 }

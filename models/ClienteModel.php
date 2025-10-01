@@ -44,9 +44,11 @@ class ClienteModel {
             return $stmt->execute(); 
         
     }
-    public static function clienteValidation($connect, $email, $senha) {
-        $sql = "SELECT clientes.id, clientes.email, clientes.senha, clientes.nome FROM clientes WHERE clientes.email = ?";
-        $stmt = $conn->prepare($sql);
+    public static function validandoCliente($connect, $email, $senha) {
+        $MYsql = "SELECT clientes.id, clientes.nome, clientes.email, clientes.senha, roles.nome AS cargo
+        FROM clientes JOIN roles ON clientes.id_roles_fk = roles.id
+        WHERE clientes.email = ?";
+        $stmt = $connect->prepare($MYsql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();

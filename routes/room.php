@@ -1,24 +1,19 @@
 <?php
 require_once __DIR__ . "/../controllers/QuartoController.php";
 
-if ($_SERVER['REQUEST_METHOD'] === "GET"){
-    // /api/room/available?inicio=YYYY-MM-DD&fim=YYYY-MM-DD&qtdPessoas=2
-    $action = $seguimentos[2] ?? null;
-    if ($action === 'available'){
-        $inicio = $_GET['inicio'] ?? null;
-        $fim = $_GET['fim'] ?? null;
-        $qtdPessoas = isset($_GET['qtdPessoas']) ? (int)$_GET['qtdPessoas'] : null;
-        if(!$inicio || !$fim || !$qtdPessoas){
-            jsonResponse(['mensagem' => 'Parâmetros obrigatórios: inicio, fim, qtdPessoas'], 400);
-        }
-        QuartoController::buscarDisponiveis($connect, $inicio, $fim, $qtdPessoas);
-    } else {
-        $id = $seguimentos[2] ?? null;   
-        if(isset($id)){
-            QuartoController::buscarPorId($connect, $id);
+if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
+    $id = $segments[2] ?? null;
+    if (isset($id)){
+        if (is_numeric($id)){
+            quartoController::buscarPorId($conn, $id);
         }else{
-            QuartoController::listarTodos($connect);
+            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
+            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+            RoomController::get_available($conn, ["data_inicio"=>$inicio, "data_fim"=>$fim, "qtd"=>$qtd]);
         }
+    }else{
+        RoomController::getAll($conn);
     }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
