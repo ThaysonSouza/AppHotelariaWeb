@@ -1,56 +1,74 @@
 export default function DataSelector() {
-
     const divDateSelector = document.createElement('div');
     divDateSelector.className = 'data-selector-container';
 
-    const dateCheckIn = document.createElement('input');
-    dateCheckIn.type = 'text'
-    dateCheckIn.placeholder = 'Data Check-In'
-    dateCheckIn.className = 'card p-3 shadow-lg inputDate';
-    divDateSelector.appendChild(dateCheckIn);
+    // Container principal com design moderno
+    const selectorCard = document.createElement('div');
+    selectorCard.className = 'data-selector-card';
 
-    dateCheckIn.addEventListener('focus', function() {
-    this.type = 'date';
-    });
+    // Seção de datas
+    const datesSection = document.createElement('div');
+    datesSection.className = 'dates-section';
 
-    dateCheckIn.addEventListener('blur', function() {
-    if (!this.value) {
-        this.type = 'text';
-    }
-    });
+    const dateCheckIn = document.createElement('div');
+    dateCheckIn.className = 'date-input-group';
+    dateCheckIn.innerHTML = `
+        <label class="date-label">
+            <i class="bi bi-calendar-check"></i>
+            Check-in
+        </label>
+        <input type="date" class="date-input" placeholder="Selecione a data">
+    `;
+    
+    const dateCheckOut = document.createElement('div');
+    dateCheckOut.className = 'date-input-group';
+    dateCheckOut.innerHTML = `
+        <label class="date-label">
+            <i class="bi bi-calendar-x"></i>
+            Check-out
+        </label>
+        <input type="date" class="date-input" placeholder="Selecione a data">
+    `;
 
-    const dateCheckOut = document.createElement('input');
-    dateCheckOut.type = 'text'
-    dateCheckOut.placeholder = 'Data Check-Out'
-    dateCheckOut.className = 'card p-3 shadow-lg inputDate';
-    divDateSelector.appendChild(dateCheckOut);
+    datesSection.appendChild(dateCheckIn);
+    datesSection.appendChild(dateCheckOut);
 
-    dateCheckOut.addEventListener('focus', function() {
-    this.type = 'date';
-    });
+    // Seção de hóspedes simplificada
+    const guestsSection = document.createElement('div');
+    guestsSection.className = 'guests-section';
+    guestsSection.innerHTML = `
+        <label class="guests-label">
+            <i class="bi bi-people"></i>
+            Hóspedes
+        </label>
+        <select class="guests-select">
+            <option value="1">1 pessoa</option>
+            <option value="2" selected>2 pessoas</option>
+            <option value="3">3 pessoas</option>
+            <option value="4">4 pessoas</option>
+            <option value="5">5 ou mais pessoas</option>
+        </select>
+    `;
 
-    dateCheckOut.addEventListener('blur', function() {
-    if (!this.value) {
-        this.type = 'text';
-    }
-    });
-
-    const guestsAmount = document.createElement('select');
-    guestsAmount.className = 'card p-3 shadow-lg inputGuests';
-    guestsAmount.innerHTML = `
-    <option value="">Quantas Pessoas?</option>
-    <option value="1">1 pessoa</option>
-    <option value="2">2 pessoas</option>
-    <option value="3">3 pessoas</option>
-    <option value="4">4 pessoas</option>
-    <option value="5">5 ou mais pessoas</option>`;
-    divDateSelector.appendChild(guestsAmount);
-
+    // Botão de pesquisa
+    const searchSection = document.createElement('div');
+    searchSection.className = 'search-section';
     const btnSearch = document.createElement('button');
-    btnSearch.type = 'submit';
-    btnSearch.textContent = "Pesquisar";
-    btnSearch.className = 'btn btn-primary buttonSearch';
-    divDateSelector.appendChild(btnSearch);
+    btnSearch.type = 'button';
+    btnSearch.className = 'search-btn';
+    btnSearch.innerHTML = `
+        <i class="bi bi-search"></i>
+        <span>Pesquisar</span>
+    `;
+
+    searchSection.appendChild(btnSearch);
+
+    // Montar o card
+    selectorCard.appendChild(datesSection);
+    selectorCard.appendChild(guestsSection);
+    selectorCard.appendChild(searchSection);
+    divDateSelector.appendChild(selectorCard);
 
     return divDateSelector;
 }
+
