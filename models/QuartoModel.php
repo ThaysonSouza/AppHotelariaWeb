@@ -48,13 +48,10 @@
         }
         public static function buscarDisponiveis($connect, $data){
             $MYsql =
-            " SELECT *
-            FROM quartos q WHERE q.disponivel = 1
-            AND (quartos.camaCasal * 2 + quartos.camaSolteiro) >= ?
-            AND quartos.id NOT IN (
-                SELECT reservas.fk_quarto_fk 
-                FROM reservas 
-                WHERE (reservas.dataInicio <= ? AND reservas.dataFim >= ?))";
+            "SELECT * FROM quartos q WHERE q.disponivel = true
+            AND ((q.camaCasal * 2) + q.camaSolteiro) >= ? AND q.id NOT IN (
+            SELECT reservas.id_quarto_fk FROM reservas
+            WHERE (reservas.dataFim >= ? AND reservas.dataInicio <= ?))";
             $stmt = $connect->prepare($MYsql);
             $stmt->bind_param("iss", $data["qtd"], $data["dataFim"], $data["dataInicio"] 
             );

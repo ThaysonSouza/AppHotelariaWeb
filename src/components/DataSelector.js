@@ -2,7 +2,7 @@ export default function DataSelector() {
     const divDateSelector = document.createElement('div');
     divDateSelector.className = 'data-selector-container';
 
-    // Container principal com design moderno
+    // Container principal 
     const selectorCard = document.createElement('div');
     selectorCard.className = 'data-selector-card';
 
@@ -33,7 +33,7 @@ export default function DataSelector() {
     datesSection.appendChild(dateCheckIn);
     datesSection.appendChild(dateCheckOut);
 
-    // Seção de hóspedes simplificada
+    // Seção de hóspedes 
     const guestsSection = document.createElement('div');
     guestsSection.className = 'guests-section';
     guestsSection.innerHTML = `

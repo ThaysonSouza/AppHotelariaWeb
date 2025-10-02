@@ -141,7 +141,7 @@ body {
     gap: 35px;
 }
 
-/* Estilos para o DataSelector moderno */
+/* Estilos para o DataSelector */
 .data-selector-container {  
     display: flex;
     justify-content: center;
@@ -539,7 +539,7 @@ body {
 }
 
 .cart-header-container {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     color: white;
     padding: 1.5rem 0;
 }
@@ -657,18 +657,12 @@ body {
 }
 
 .reserve-btn {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background:var(--primary-color);
     border: none;
     font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.reserve-btn:hover {
-    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+    
 }
 
 .total-info {

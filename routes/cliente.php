@@ -5,23 +5,29 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $seguimentos[2] ?? null;   
     if(isset($id)){
         ClienteController::buscarPorId($connect, $id);
-    }else{
+    }
+    else{
+     
         ClienteController::listarTodos($connect);
     }
 }
+
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $seguimentos[2] ?? null;
     
     if(isset($id)){
         ClienteController::delete($connect, $id);
-    }else{
+    }
+    else{
         jsonResponse(['messagem' =>'É necessario passar o ID'], 400);
     }   
 }
+
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = json_decode(file_get_contents('php://input'), true);
     ClienteController::criar($connect, $data);
 }
+
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];

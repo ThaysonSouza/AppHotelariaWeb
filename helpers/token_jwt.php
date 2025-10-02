@@ -26,4 +26,16 @@ function validateToken($token){
         return false; 
     }
 }
+function validateTokenAPI(){
+    $headers = getallheaders();
+    if(!isset($headers["Authorization"]) ){
+        jsonResponse(["messagem" => "Esta faltando o token"],401);
+        exit;
+    }
+    $token = str_replace("Bearer ", "", $headers["Authorization"]);
+    if(!validateToken($token)){
+        jsonResponse(["messagem" => "O token esta invalido"],401);
+        exit;
+    }
+}
 ?>

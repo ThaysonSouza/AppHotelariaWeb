@@ -5,15 +5,15 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     $id = $segments[2] ?? null;
     if (isset($id)){
         if (is_numeric($id)){
-            quartoController::buscarPorId($conn, $id);
+            quartoController::buscarPorId($connect, $id);
         }else{
-            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
-            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $inicio = isset($_GET['dataInicio']) ? $_GET['dataInicio'] : null;
+            $fim = isset($_GET['dataFim']) ? $_GET['dataFim'] : null;
             $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
-            RoomController::get_available($conn, ["data_inicio"=>$inicio, "data_fim"=>$fim, "qtd"=>$qtd]);
+            quartoController::buscarDisponiveis($connect, ["dataInicio"=>$inicio, "dataFim"=>$fim, "qtd"=>$qtd]);
         }
     }else{
-        RoomController::getAll($conn);
+        quartoController::listarTodos($connect);
     }
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){

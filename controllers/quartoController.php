@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
-require_once "DataController.php";
+
 
 class QuartoController{
     
@@ -53,13 +53,16 @@ class QuartoController{
         }
     }
     public static function buscarDisponiveis($connect, $data){
+        validadorController::dataHora($data, [])
+
+
         $result = QuartoModel::buscarDisponiveis($connect, $data);
         if($result){
             return jsonResponse(['Quartos'=>$result]);    
         }else{
-            return jsonResponse(['message'=>'asdsfaf'],400)
-        }
-        
+            return jsonResponse(['message'=>'asdsfaf'],400);
+ 
+        }  
     }
 
 }
