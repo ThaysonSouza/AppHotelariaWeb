@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
+require_once "ValidadorController.php";
 
 
 class QuartoController{
@@ -7,7 +8,7 @@ class QuartoController{
     public static $labels = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco', 'disponivel'];
 
     public static function criar($connect, $data){
-        $validar = validadorController::issetData($data, self::$labels);
+        $validar = ValidatorController::issetData($data, self::$labels);
         
         if( !empty($validar) ){
             $dados = implode(", ", $validar);
@@ -53,8 +54,11 @@ class QuartoController{
         }
     }
     public static function buscarDisponiveis($connect, $data){
-        validadorController::dataHora($data, [])
 
+        ValidatorController::validate_data($data, ["dataInicio", "dataFim", "qtd"]);
+
+        $data["dataInicio"] = ValidatorController::dataHora($data["dataInicio"], 14);
+        $data["dataFim"] = ValidatorController::dataHora($data["dataFim"], 12);
 
         $result = QuartoModel::buscarDisponiveis($connect, $data);
         if($result){

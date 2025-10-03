@@ -129,7 +129,7 @@ body {
 
 /* Estilos específicos para os containers */
 .room-cards-container {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: #f8f9fa ;
     padding: 2rem 0;
     margin: 0;
     flex-shrink: 0;
@@ -428,15 +428,16 @@ body {
 }
 
 .room-cards-container .btn {
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    background:linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .room-cards-container .btn:hover {
-    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-    transform: scale(1.02);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
 }
 
 /* Responsividade melhorada */

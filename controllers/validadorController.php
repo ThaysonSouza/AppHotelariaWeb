@@ -10,14 +10,15 @@ class ValidatorController{
         }
         if (!empty($pendente) ){
             $pendente = implode(", ", $pendente);
-            jsonResponse(['menssagem'=>"Erro, Falta o campo: ", $pendente],400);
+            jsonResponse(['menssagem'=>"Erro, Falta o campo: ".$pendente],400);
             exit;
         }
     }
-    public static function dataHora($data, $hora){
-        $dataHora  =  new DateTime($data);
-        $dataHora->setTime(hora, 0, 0);
+    public static function dataHora($data, $hora) {
+        $dataHora = new DateTime($data);
+        $dataHora->setTime($hora, 0, 0);
         return $dataHora->format('Y-m-d H:i:s');
     }
+
 }
 ?>

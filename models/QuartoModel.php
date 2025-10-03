@@ -53,7 +53,10 @@
             SELECT reservas.id_quarto_fk FROM reservas
             WHERE (reservas.dataFim >= ? AND reservas.dataInicio <= ?))";
             $stmt = $connect->prepare($MYsql);
-            $stmt->bind_param("iss", $data["qtd"], $data["dataFim"], $data["dataInicio"] 
+            $stmt->bind_param("iss", 
+            $data["qtd"],
+             $data["dataFim"],
+              $data["dataInicio"] 
             );
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
