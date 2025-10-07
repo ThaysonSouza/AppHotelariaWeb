@@ -104,7 +104,7 @@ body {
     padding: 2rem;
     display: flex;
     gap: 2rem;
-    align-items: center;
+    align-items: left;
     max-width: 900px;
     width: 100%;
     border: 1px solid rgba(106, 27, 154, 0.1);
@@ -211,11 +211,8 @@ body {
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
     display: flex;
-    align-items: center;
     gap: 0.5rem;
-    white-space: nowrap;
 }
 
 .search-btn:hover {
@@ -227,6 +224,11 @@ body {
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    gap: 35px;
+
 }
 
 .room-cards-container .card-title {

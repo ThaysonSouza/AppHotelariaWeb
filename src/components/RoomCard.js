@@ -1,8 +1,24 @@
-export default function RoomCard(index) {
+export default function RoomCard(itemCard, index = 0) {
+
+    const {
+        nome,
+        numero,
+        camaSolteiro,
+        camaCasal,
+        preco
+    } = itemCard || {};
+    const title = nome;
+
+    const camas = [
+        (camaCasal != null ? `${camaCasal} cama(s) de casal` : null),
+        (camaSolteiro != null ? `${camaSolteiro} cama(s) de solteiro` : null)
+    ].filter(Boolean).join(' - ');
+
+
     const card = document.createElement('div');
     card.className = "cardContainer";
     card.innerHTML =
-    `
+        `
     <div class="card" style="width: 18rem;">
         <div id="carouselExampleIndicators-${index}" class="carousel slide">
             <div class="carousel-indicators">
@@ -38,9 +54,12 @@ export default function RoomCard(index) {
         </div>
         
         <div class="card-body">
-            <h5 class="card-title">Suite Paulista</h5>
-            <p class="card-text">Descrição do quarto: Lorem ipsum dolor sit amet consectetur
-             adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
+            <h5 class="card-title">${title}</h5>
+            <ul class="list-unstyled mb-2">
+            ${camas ? `<li>${camas}` : ""}
+            ${preco != null ? `<li>Preço: R$ ${Number(preco).toFixed(2)}` : ""}
+
+            </ul>
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>

@@ -19,7 +19,7 @@ export default function DataSelector() {
         </label>
         <input type="date" class="date-input" placeholder="Selecione a data">
     `;
-    
+
     const dateCheckOut = document.createElement('div');
     dateCheckOut.className = 'date-input-group';
     dateCheckOut.innerHTML = `
