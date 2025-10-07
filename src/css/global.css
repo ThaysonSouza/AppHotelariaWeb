@@ -1,48 +1,33 @@
 :root {
-    --primary-color: #6a1b9a; /* Roxo escuro */
-    --secondary-color: #ab47bc; /* Roxo medio */
-    --accent-color: #e1bee7; /* Roxo claro */
-    --dark-color: #4a148c; /* Roxo muito escuro */
-    --light-color: #f3e5f5; /* Cor clara */
+    --primary-color: #6a1b9a;
+    --secondary-color: #ab47bc;
+    --accent-color: #e1bee7;
+    --dark-color: #4a148c;
+    --light-color: #f3e5f5;
 }
+
 body {
     background-color: var(--light-color);
     font-family: 'Inter', sans-serif; 
     color: #333;
 }
+
 .titulo {
     color: var(--dark-color);
 }
 
-
 .btn {
     font-family: "Inter", sans-serif;
     font-weight: 500;
-    font-style: normal;
     font-size: 15px;
 }
 
 #root {
     flex-direction: column;
-}
-
-/*hero section*/
-.hero-frame {
-    overflow: hidden;
-    /*impede que a imagem vaze do quadro*/
-}
-
-.hero img,
-.hero {
-    /*Aplica propriedade cover para recortar a parte da imagem(e nao distorce la),
-    definindo seu ponto de foco a partir da propriedade object-position
-    object-fit: cover;*/
-    height: 70vh;
-}
-#root {
     min-height: 100vh;
 }
 
+/* Hero Section */
 .hero-section {
     height: 60vh;
     min-height: 400px;
@@ -51,14 +36,8 @@ body {
     flex-shrink: 0;
 }
 
-.hero-section .carousel {
-    height: 100%;
-}
-
-.hero-section .carousel-inner {
-    height: 100%;
-}
-
+.hero-section .carousel,
+.hero-section .carousel-inner,
 .hero-section .carousel-item {
     height: 100%;
 }
@@ -74,47 +53,17 @@ body {
     bottom: 20px;
 }
 
-/*Responsividade media-query*/
-@media (max-width: 576px) {
-
-    .hero img,
-    .hero {
-        height: 50vh;
-    }
-}
-
-
-/*NAVBAR*/
+/* Navbar */
 .navbar-brand {
-    padding: 0.5rem 1rem; /* Espaçamento para o logo */
-}
-
-
-
-.navbar-brand img {
-    transition: transform 0.3s ease;
-}
-
-.navbar-brand img:hover {
-    transform: scale(1.05);
+    padding: 0.5rem 1rem;
 }
 
 .nav-link {
     font-weight: 500;
-    transition: color 0.3s ease;
 }
 
 .nav-link:hover {
     color: var(--primary-color) !important;
-}
-
-
-.card {
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .carousel-item img {
@@ -141,7 +90,7 @@ body {
     gap: 35px;
 }
 
-/* Estilos para o DataSelector moderno */
+/* DataSelector */
 .data-selector-container {  
     display: flex;
     justify-content: center;
@@ -159,12 +108,6 @@ body {
     max-width: 900px;
     width: 100%;
     border: 1px solid rgba(106, 27, 154, 0.1);
-    transition: all 0.3s ease;
-}
-
-.data-selector-card:hover {
-    box-shadow: 0 12px 40px rgba(106, 27, 154, 0.2);
-    transform: translateY(-2px);
 }
 
 .dates-section {
@@ -199,7 +142,6 @@ body {
     border: 2px solid #e9ecef;
     border-radius: 12px;
     font-size: 1rem;
-    transition: all 0.3s ease;
     background: #fff;
     cursor: pointer;
 }
@@ -244,7 +186,6 @@ body {
     font-size: 1rem;
     background: #fff;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .guests-select:focus {
@@ -255,109 +196,6 @@ body {
 
 .guests-select:hover {
     border-color: var(--secondary-color);
-}
-
-.guests-selector {
-    position: relative;
-}
-
-.guests-btn {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.guests-btn:hover {
-    border-color: var(--secondary-color);
-}
-
-.guests-btn i {
-    color: var(--primary-color);
-    transition: transform 0.3s ease;
-}
-
-.guests-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border: 2px solid var(--primary-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 32px rgba(106, 27, 154, 0.2);
-    z-index: 1000;
-    display: none;
-    margin-top: 0.5rem;
-}
-
-.guests-dropdown.show {
-    display: block;
-    animation: fadeInUp 0.3s ease;
-}
-
-.guests-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid #f8f9fa;
-}
-
-.guests-option:last-child {
-    border-bottom: none;
-}
-
-.guests-option span {
-    font-weight: 600;
-    color: var(--dark-color);
-}
-
-.guests-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.btn-count {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--primary-color);
-    background: #fff;
-    color: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-count:hover {
-    background: var(--primary-color);
-    color: #fff;
-    transform: scale(1.1);
-}
-
-.btn-count:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.count {
-    font-weight: 600;
-    color: var(--primary-color);
-    min-width: 20px;
-    text-align: center;
 }
 
 .search-section {
@@ -377,42 +215,18 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .search-btn:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
 }
 
-.search-btn:active {
-    transform: translateY(0);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/*cards de quartos */
+/* Cards de quartos */
 .room-cards-container .card {
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     overflow: hidden;
-}
-
-.room-cards-container .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.15);
 }
 
 .room-cards-container .card-title {
@@ -431,28 +245,16 @@ body {
     background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     border: none;
     font-weight: 500;
-    transition: all 0.3s ease;
 }
 
 .room-cards-container .btn:hover {
     background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-    transform: scale(1.02);
 }
 
-/* Responsividade melhorada */
+/* Responsividade */
 @media (max-width: 768px) {
     .room-cards-container, .data-selector-container {
         padding: 1rem 0;
-    }
-    
-    .room-cards-container .card:hover,
-    .data-selector-container .card:hover {
-        transform: translateY(-3px);
-    }
-    
-    .card.p-4.shadow-lg {
-        margin: 1rem;
-        max-width: calc(100% - 2rem);
     }
     
     .navbar-brand img {
@@ -471,7 +273,6 @@ body {
         margin: 0 10px;
     }
     
-    /* Responsividade para DataSelector */
     .data-selector-card {
         flex-direction: column;
         gap: 1.5rem;
@@ -502,23 +303,9 @@ body {
         margin: 0 0.5rem;
     }
     
-    .date-input, .guests-btn, .search-btn {
+    .date-input, .search-btn {
         padding: 0.8rem;
         font-size: 0.9rem;
-    }
-    
-    .guests-dropdown {
-        padding: 1rem;
-    }
-    
-    .guests-controls {
-        gap: 0.5rem;
-    }
-    
-    .btn-count {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
     }
 }
 
@@ -528,7 +315,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Estilos para o carrinho */
+/* Carrinho */
 .cart-container {
     background: #fff;
     border-radius: 12px;
@@ -562,11 +349,6 @@ body {
 .cart-room-card {
     border-bottom: 1px solid #e9ecef;
     padding: 1.5rem 0;
-    transition: background-color 0.3s ease;
-}
-
-.cart-room-card:hover {
-    background-color: #f8f9fa;
 }
 
 .cart-room-card:last-child {
@@ -662,13 +444,10 @@ body {
     font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 8px;
-    transition: all 0.3s ease;
 }
 
 .reserve-btn:hover {
     background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
 }
 
 .total-info {
@@ -689,7 +468,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Responsividade para carrinho */
+/* Responsividade carrinho */
 @media (max-width: 768px) {
     .cart-container {
         margin: 1rem;
