@@ -1,4 +1,4 @@
-export default function CartFooter(totalPrice) {
+export default function CartFooter() {
     const footer = document.createElement('div');
     footer.className = "cart-footer-container";
     
@@ -13,7 +13,7 @@ export default function CartFooter(totalPrice) {
                 <div class="col-md-6">
                     <div class="total-info">
                         <span class="total-label">Total:</span>
-                        <span class="total-price">R$ ${totalPrice.toLocaleString('pt-BR')}</span>
+                        <span class="total-price">R$ </span>
                     </div>
                 </div>
             </div>
