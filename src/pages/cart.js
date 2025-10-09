@@ -38,7 +38,6 @@ export default function renderCartPage() {
             <i class="bi bi-cart-x fs-1 text-muted"></i>
             <h5 class="mt-3">Seu carrinho está vazio</h5>
             <p class="text-muted">Adicione quartos para começar sua reserva</p>
-            <a href="/home" class="btn btn-primary">Ver Quartos</a>
         `;
         roomsList.appendChild(emptyMessage);
     } else {

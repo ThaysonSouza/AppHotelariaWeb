@@ -61,4 +61,15 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
+        public static function bloquendoPorId{
+            $MYsql = "SELECT id FROM quartos WHERE id=? FOR UPDATE";
+            $stmt->execute($MYsql);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            $row = $resultado && $resultado->num_rows > 0;
+            $stmt->close;
+            return $row;
+        }
+
     }?>

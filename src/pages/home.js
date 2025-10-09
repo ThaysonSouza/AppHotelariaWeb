@@ -91,35 +91,10 @@ export default function renderHomePage() {
         }
     });
 
-    // Exemplos de quartos para exibir inicialmente
-    const quartosExemplo = [
-        {
-            nome: "Quarto Standard",
-            numero: "101",
-            camaSolteiro: 2,
-            camaCasal: 0,
-            preco: 150.00
-        },
-        {
-            nome: "Quarto Casal",
-            numero: "102", 
-            camaSolteiro: 0,
-            camaCasal: 1,
-            preco: 200.00
-        },
-        {
-            nome: "Suite Deluxe",
-            numero: "201",
-            camaSolteiro: 1,
-            camaCasal: 1,
-            preco: 300.00
-        }
-    ];
-
-    quartosExemplo.forEach((quarto, i) => {
-        const card = RoomCard(quarto, i);
-        cardsGroup.appendChild(card);
-    });
+     for (var i=0; i < 3; i++) {
+        const cards = RoomCard(i);
+        cardsGroup.appendChild(cards);
+    }
 
     // Adicionar container de cards ao root
     divRoot.appendChild(cardsGroup);
