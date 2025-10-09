@@ -1,4 +1,4 @@
-export default function Navbar() {
+export default function NavBar() {
     const navbar = document.createElement('div');
     navbar.className = "navbarTop"
     navbar.innerHTML = 

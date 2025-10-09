@@ -1,12 +1,12 @@
 import { loginRequest, saveToken } from "../api/authAPI.js";
 import LoginForm from "../components/loginForm.js";
-import Navbar from "../components/Navbar.js";
-import Footer from "../components/footer.js";
+import NavBar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
 
 export default function renderLoginPage() {
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-    const navbar = Navbar();
+    const navbar = NavBar();
     nav.appendChild(navbar);
 
     const rodape = document.getElementById('rodape');
@@ -46,4 +46,8 @@ export default function renderLoginPage() {
     btnVoltar.style.textDecoration = 'none';
 
     formulario.appendChild(btnVoltar);
+
+    const divRoot = document.getElementById('root');
+    divRoot.innerHTML = '';
+    divRoot.appendChild(formulario);
 }

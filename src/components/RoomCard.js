@@ -1,5 +1,4 @@
 export default function RoomCard(itemCard, index = 0) {
-
     const {
         nome,
         numero,
@@ -7,13 +6,13 @@ export default function RoomCard(itemCard, index = 0) {
         camaCasal,
         preco
     } = itemCard || {};
+
     const title = nome;
 
     const camas = [
         (camaCasal != null ? `${camaCasal} cama(s) de casal` : null),
-        (camaSolteiro != null ? `${camaSolteiro} cama(s) de solteiro` : null)
+        (camaSolteiro != null ? `${camaSolteiro} cama(s) de solteiro` : null),
     ].filter(Boolean).join(' - ');
-
 
     const card = document.createElement('div');
     card.className = "cardContainer";
@@ -56,11 +55,12 @@ export default function RoomCard(itemCard, index = 0) {
         <div class="card-body">
             <h5 class="card-title">${title}</h5>
             <ul class="list-unstyled mb-2">
-            ${camas ? `<li>${camas}` : ""}
-            ${preco != null ? `<li>Preço: R$ ${Number(preco).toFixed(2)}` : ""}
-
+                ${camas ? `<li>${camas}` : ""}
+                ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>
-            <a href="#" class="btn btn-primary">Reservar</a>
+    <button class="btn btn-primary w-100">
+                <i class="bi bi-cart-plus me-2"></i>Reservar
+            </button>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
-RewriteEngine ON
-RewriteBase /PrimeSite/
+RewriteEngine On
+RewriteBase /AppHotelaria-Front/
+
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

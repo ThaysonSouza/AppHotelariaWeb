@@ -1,4 +1,4 @@
-import Navbar from "../components/NavBar.js";
+import NavBar from "../components/NavBar.js";
 import Footer from "../components/Footer.js";
 import CartHeader from "../components/CartHeader.js";
 import CartRoomCard from "../components/CartRoomCard.js";
@@ -8,7 +8,7 @@ export default function renderCartPage() {
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
 
-    const navbar = Navbar();
+    const navbar = NavBar();
     nav.appendChild(navbar);
 
     const divRoot = document.getElementById('root');
@@ -28,15 +28,30 @@ export default function renderCartPage() {
     const roomsList = document.createElement('div');
     roomsList.className = 'rooms-list';
     
-    roomsData.forEach((room, index) => {
-        const roomCard = CartRoomCard(room, index);
-        roomsList.appendChild(roomCard);
-    });
+    // Dados de exemplo para o carrinho (substituir por dados reais do localStorage ou API)
+    const roomsData = JSON.parse(localStorage.getItem('cartRooms')) || [];
+    
+    if (roomsData.length === 0) {
+        const emptyMessage = document.createElement('div');
+        emptyMessage.className = 'text-center p-4';
+        emptyMessage.innerHTML = `
+            <i class="bi bi-cart-x fs-1 text-muted"></i>
+            <h5 class="mt-3">Seu carrinho está vazio</h5>
+            <p class="text-muted">Adicione quartos para começar sua reserva</p>
+            <a href="/home" class="btn btn-primary">Ver Quartos</a>
+        `;
+        roomsList.appendChild(emptyMessage);
+    } else {
+        roomsData.forEach((room, index) => {
+            const roomCard = CartRoomCard(room, index);
+            roomsList.appendChild(roomCard);
+        });
+    }
     
     cartContainer.appendChild(roomsList);
 
     // Calcular total
-    const totalPrice = roomsData.reduce((sum, room) => sum + room.price, 0);
+    const totalPrice = roomsData.reduce((sum, room) => sum + (room.preco || 0), 0);
 
     // Adicionar rodapé
     const cartFooter = CartFooter(totalPrice);

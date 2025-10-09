@@ -1,13 +1,13 @@
 import LoginForm from "../components/loginForm.js";
-import Navbar from "../components/Navbar.js";
-import Footer from "../components/footer.js";
+import NavBar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
 import { createRequest } from "../api/clienteAPI.js";
 
 export default function renderRegisterPage() {
     // Renderiza a navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-    const navbar = Navbar();
+    const navbar = NavBar();
     nav.appendChild(navbar);
 
     const rodape = document.getElementById('rodape');
@@ -87,5 +87,7 @@ export default function renderRegisterPage() {
         }
     });
 
-    return loginFormContainer;
+    const divRoot = document.getElementById('root');
+    divRoot.innerHTML = '';
+    divRoot.appendChild(loginFormContainer);
 }
