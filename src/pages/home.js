@@ -6,6 +6,7 @@ import RoomCard from "../components/RoomCard.js";
 import Footer from "../components/Footer.js";
 import Modal from "../components/Modal.js";
 import Spinner from "../components/Spinner.js";
+import CardLounge from "../components/Cardlounge.js";
 
 export default function renderHomePage() {
     // Limpar e renderizar navbar
@@ -29,14 +30,29 @@ export default function renderHomePage() {
     // Obter elementos do formulário
     const guestsSelect = dateSelector.querySelector('.guests-select');
     const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
+    const btnSearchRoom = dateSelector.querySelector('button');
+
 
     // Criar container para os cards de quartos
     const cardsGroup = document.createElement('div');
     cardsGroup.className = 'room-cards-container';
     cardsGroup.id = "cards-result";
 
-    // Configurar evento do botão de busca
-    const btnSearchRoom = dateSelector.querySelector('button');
+
+    const loungeItens = [
+        {caminho: "restaurante.jpeg", titulo: "Restaurante", 
+            texto: "capaz de encantar os paladares mais exigentes. Aprecie o menu exclusivo em ambiente aconchegante, com atendimento personalizado e na charmosa região dos Jardins"},
+        {caminho: "salao.jpg", titulo: "Salão de festas", 
+            texto: "O Nocturne Royal, possui uma áreas para festa, distribuídas em 09 salas, localizadas em dois andares totalmente dedicados à realização de eventos. " +
+            "Apresenta estrutura versátil e uma equipe exclusiva de profissionais especializados em eventos corporativos e sociais"},
+        {caminho: "bar.jpg", titulo: "Bar", 
+            texto: "Um cardápio variado de bebidas e petiscos, unido a uma atmosfera cosmopolita, proporciona momentos únicos entre amigos."}
+    ];
+
+    for(let i = 0; i < loungeItens.length; i++){
+        const cardLounge = CardLounge(loungeItens[i], i);
+        cardsGroup.appendChild(cardLounge);
+    }
 
     btnSearchRoom.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -70,7 +86,7 @@ export default function renderHomePage() {
             // Esconder spinner
             spinner.hide();
 
-            if (quartos.length === 0) {
+            if (!quartos.length) {
                 Modal("Nenhum quarto disponível para esse período. Tente outras datas.");
                 return;
             }
@@ -90,11 +106,6 @@ export default function renderHomePage() {
             Modal("Ocorreu um erro ao buscar os quartos. Tente novamente.", "Erro");
         }
     });
-
-     for (var i=0; i < 3; i++) {
-        const cards = RoomCard(i);
-        cardsGroup.appendChild(cards);
-    }
 
     // Adicionar container de cards ao root
     divRoot.appendChild(cardsGroup);

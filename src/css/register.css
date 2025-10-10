@@ -1,32 +1,3 @@
-/* Estilização do card */
-.card {
-    border: none !important;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(106, 27, 154, 0.1);
-}
-
-/* Estilização do título */
-.titulo {
-    color: var(--dark-color); /* Roxo escuro */
-    font-weight: 700;
-    font-size: 2.5rem;
-    position: relative;
-    padding-bottom: 30px;
-    text-align: center; /* Centraliza o título */
-}
-
-.titulo::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: var(--secondary-color); /* Roxo vibrante */
-    border-radius: 5px;
-}
-
 /* Estilização dos inputs */
 input {
     border-style: solid;
@@ -43,35 +14,4 @@ input:focus {
     outline: none;
     border: 2px solid var(--secondary-color); /* Roxo vibrante */
     box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra roxa */
-}
-
-/* Botão principal */
-.btn-primary {
-    background-color: var(--dark-color); /* Roxo escuro */
-    border-color: var(--dark-color);
-    color: white; /* Texto branco para contraste */
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    padding: 12px 20px;
-    width: 100%; /* Garante que o botão ocupe toda a largura */
-}
-
-/* Hover no botão principal */
-.btn-primary:hover {
-    background-color: #2E0854; /* Roxo mais fechado */
-    border-color: #2E0854;
-    transform: translateY(-2px);
-}
-
-/* Botão secundário (link) */
-.btn-link {
-    color: var(--secondary-color); /* Roxo vibrante */
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.btn-link:hover {
-    color: var(--primary-color); /* Roxo médio */
-    text-decoration: underline;
 }
