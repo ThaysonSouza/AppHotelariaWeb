@@ -47,7 +47,6 @@
             return $stmt->execute(); 
         }
         public static function buscarDisponiveis($connect, $data){
-            // Conflito inclusivo: existe conflito quando (r.dataFim >= dataInicio) AND (r.dataInicio <= dataFim)
             $MYsql =
             "SELECT * FROM quartos q WHERE q.disponivel = 1
             AND ((q.camaCasal * 2) + q.camaSolteiro) >= ? AND q.id NOT IN (
@@ -64,22 +63,14 @@
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         public static function bloquearPorId($connect, $id){
-            // Seleciona a linha do quarto e aplica lock na transação atual
             $sql = "SELECT id FROM quartos WHERE id = ? FOR UPDATE";
             $stmt = $connect->prepare($sql);
-            if(!$stmt){
-                return false;
-            }
             $stmt->bind_param("i", $id);
-            $ok = $stmt->execute();
-            if(!$ok){
-                $stmt->close();
-                return false;
-            }
-            $resultado = $stmt->get_result();
-            $rowExists = $resultado && $resultado->num_rows > 0;
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result && $result->num_rows > 0;
             $stmt->close();
-            return $rowExists;
+            return $row;
         }
 
     }?>

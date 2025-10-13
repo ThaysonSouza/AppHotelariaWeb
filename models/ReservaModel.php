@@ -51,5 +51,19 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
+        public static function temConflito($connect, $idQuarto, $inicio, $fim) {
+            $sql = "SELECT 1 
+            FROM reservas r 
+            WHERE r.id_quarto_fk = ? 
+            AND (r.dataFim >= ? AND r.dataInicio <= ?) 
+            LIMIT 1";
+            
+            $stmt = $connect->prepare($sql);
+            $stmt->bind_param("iss", $idQuarto, $inicio, $fim);
+            $stmt->execute();
+            $linhaAfetada = $stmt->get_result()->num_rows > 0;
+            $stmt->close();
+            return $linhaAfetada;
+}
 
     }?>

@@ -31,11 +31,18 @@ export default function renderHomePage() {
     const guestsSelect = dateSelector.querySelector('.guests-select');
     const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
     const btnSearchRoom = dateSelector.querySelector('button');
-
+    //Cria uma constante que armazena o valor da data de Hoje
+    const dataDia = new Date().toISOString().split('T')[0];
+    dateCheckIn.min = dataDia;
+    dateCheckOut.min = dataDia;
 
     // Criar container para cards de infraestrutura (lounge)
     const infraGroup = document.createElement('div');
     infraGroup.className = 'lounge-cards-container';
+    const tituloInfra  = document.createElement('h2');
+    tituloInfra.textContent = "Nosso hotel";
+    tituloInfra.style.textAlign = "center";
+    
 
     // Criar container para os cards de quartos (resultados)
     const cardsGroup = document.createElement('div');
@@ -45,7 +52,7 @@ export default function renderHomePage() {
 
     const loungeItens = [
         {caminho: "restaurante.jpeg", titulo: "Restaurante", 
-            texto: "capaz de encantar os paladares mais exigentes. Aprecie o menu exclusivo em ambiente aconchegante, com atendimento personalizado e na charmosa região dos Jardins"},
+            texto: "Nosso restaurante capaz de encantar os paladares mais exigentes. Aprecie o menu exclusivo em ambiente aconchegante, com atendimento personalizado e na charmosa região dos Jardins"},
         {caminho: "salao.jpg", titulo: "Salão de festas", 
             texto: "O Nocturne Royal, possui uma áreas para festa, distribuídas em 09 salas, localizadas em dois andares totalmente dedicados à realização de eventos. " +
             "Apresenta estrutura versátil e uma equipe exclusiva de profissionais especializados em eventos corporativos e sociais"},
@@ -57,6 +64,23 @@ export default function renderHomePage() {
         const cardLounge = CardLounge(loungeItens[i], i);
         infraGroup.appendChild(cardLounge);
     }
+
+    /* A depender da dara de check-in, será 
+    calculado o minimo para a data de check-out, ou seja, o minimo de diarias*/ 
+    function getMinDateCheckout(dateCheckIn){
+        const minDiaria = new Date(dateCheckIn);
+        minDiaria.setDate(minDiaria.getDate() + 1);
+        return minDiaria.toISOString().split('T')[0];
+    }
+
+    /*Evento para monitorar a alteraçao na data de check-in 
+    para mudar o calendario do check-out*/
+    dateCheckIn.addEventListener("change", async(e) => {
+        if(this.value){
+            const minDateCheckout = getMinDateCheckout(this.value);
+            dateCheckOut.min = minDateCheckout;
+        }
+    });
 
     btnSearchRoom.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -74,6 +98,7 @@ export default function renderHomePage() {
         // Validar datas
         const inicio = new Date(dataInicio);
         const fim = new Date(dataFim);
+        
 
         if (isNaN(inicio) || isNaN(fim) || inicio >= fim) {
             Modal("A data de check-out deve ser posterior à data de check-in.", "Data Inválida");
@@ -112,8 +137,9 @@ export default function renderHomePage() {
     });
 
     // Adicionar containers ao root: primeiro infraestrutura, depois resultados
-    divRoot.appendChild(infraGroup);
     divRoot.appendChild(cardsGroup);
+    divRoot.appendChild(tituloInfra);
+    divRoot.appendChild(infraGroup);
 
     // Limpar e renderizar footer
     const rodape = document.getElementById('rodape');

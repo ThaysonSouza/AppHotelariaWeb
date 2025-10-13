@@ -6,14 +6,14 @@ export default function CardLounge(cardLoungeItem, index = 0){
         texto
     } = cardLoungeItem || {}
 
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = `
+    const cardLounge = document.createElement('div');
+    cardLounge.innerHTML = `
     <div class="card lounge-card">
         <img src="public/assets/images/${caminho}" class="card-img-top" alt="${titulo}">
         <div class="btn-group dropup w-100">
             <button type="button" class="btn w-100 lounge-header lounge-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="lounge-toggle-icon" aria-hidden="true">
-                    <img src="public/assets/images/caret-up.svg" width="18" height="18" alt="abrir">
+                    <img src="public/assets/images/caret-up.svg" width="20" height="20" alt="abrir">
                 </span>
                 <span class="lounge-title">${titulo}</span>
                 <span class="lounge-toggle-label">ver descrição</span>
@@ -25,5 +25,5 @@ export default function CardLounge(cardLoungeItem, index = 0){
     </div>
     `
 
-    return wrapper.firstElementChild;
+    return cardLounge;
 }
