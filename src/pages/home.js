@@ -33,7 +33,11 @@ export default function renderHomePage() {
     const btnSearchRoom = dateSelector.querySelector('button');
 
 
-    // Criar container para os cards de quartos
+    // Criar container para cards de infraestrutura (lounge)
+    const infraGroup = document.createElement('div');
+    infraGroup.className = 'lounge-cards-container';
+
+    // Criar container para os cards de quartos (resultados)
     const cardsGroup = document.createElement('div');
     cardsGroup.className = 'room-cards-container';
     cardsGroup.id = "cards-result";
@@ -51,7 +55,7 @@ export default function renderHomePage() {
 
     for(let i = 0; i < loungeItens.length; i++){
         const cardLounge = CardLounge(loungeItens[i], i);
-        cardsGroup.appendChild(cardLounge);
+        infraGroup.appendChild(cardLounge);
     }
 
     btnSearchRoom.addEventListener('click', async (e) => {
@@ -107,7 +111,8 @@ export default function renderHomePage() {
         }
     });
 
-    // Adicionar container de cards ao root
+    // Adicionar containers ao root: primeiro infraestrutura, depois resultados
+    divRoot.appendChild(infraGroup);
     divRoot.appendChild(cardsGroup);
 
     // Limpar e renderizar footer

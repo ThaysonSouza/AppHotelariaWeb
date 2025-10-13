@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
         ReservaController::listarTodos($connect);
     }
 }
+
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $seguimentos[2] ?? null;
     
@@ -18,6 +19,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
         jsonResponse(['messagem' =>'É necessario passar o ID'], 400);
     }   
 }
+
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = json_decode(file_get_contents('php://input'), true);
     ReservaController::criar($connect, $data);

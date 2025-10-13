@@ -1,6 +1,6 @@
 <?php
 require_once "QuartoModel.php";
-require_once "ResevaModel.php";
+require_once "ReservaModel.php";
 class PedidoModel {
     public static function listarTodos($connect){
         $MYsql = "SELECT * FROM pedidos"; 
@@ -31,59 +31,77 @@ class PedidoModel {
     }
 
     public static function criarOrdem($connect, $data){
-        $id_cliente = $data['id_cliente_fk'],
-        $pagamento = $data['pagamento'],
-        $id_usuario = $data['id_usuario_fk'],
-        $reservas = [],
-        $resevou = true;
+        $id_cliente = $data['id_cliente_fk'];
+        $pagamento = $data['pagamento'];
+        $id_usuario = isset($data['id_usuario_fk']) ? $data['id_usuario_fk'] : null;
+        $reservasResumo = [];
 
         $connect->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-
         try {
-            $ordem_id = self::criar($connect, [
-                "id_usuario_fk" => $id_usuario;
-                "id_cliente_fk" => $id_cliente;
-                "pagamento" => $pagamento;
+            $pedidoId = self::criar($connect, [
+                "id_usuario_fk" => $id_usuario,
+                "id_cliente_fk" => $id_cliente,
+                "pagamento" => $pagamento
             ]);
-            if(!$ordem_id){
+            if(!$pedidoId){
                 throw new RuntimeException("Erro ao criar o pedido.");
             }
-            foreach($data['quartos'] as $quarto){
-                $id = $quarto["id"];
-                $id = $quarto["dataInicio"];
-                $id = $quarto["dataFim"];
 
-                //Garamtir que existe o id e bloquear
-                if(!QuartoModel::bloqueandoPorId($connect, $id)){
-                    $reservas[] = "Quarto {$id} indisponivel!";
+            foreach($data['quartos'] as $quarto){
+                $idQuarto = $quarto["id"];
+                $inicio = $quarto["dataInicio"];
+                $fim = $quarto["dataFim"];
+
+                // Bloqueia o quarto na transação
+                if(!QuartoModel::bloquearPorId($connect, $idQuarto)){
+                    $reservasResumo[] = [
+                        "id_quarto_fk" => $idQuarto,
+                        "status" => "indisponivel",
+                        "mensagem" => "Quarto inexistente ou indisponível"
+                    ];
                     continue;
                 }
 
-                //Criar um metodo na classe ReservaModel
-                //para avaliar se o quarto esta disponivel no intervalo de datas
-                //ReservaModel::estaConflitando();
+                // Verifica conflito para o intervalo solicitado
+                $sqlConf = "SELECT 1 FROM reservas r WHERE r.id_quarto_fk = ? AND (r.dataFim >= ? AND r.dataInicio <= ?) LIMIT 1";
+                $stmt = $connect->prepare($sqlConf);
+                $stmt->bind_param("iss", $idQuarto, $inicio, $fim);
+                $stmt->execute();
+                $temConflito = $stmt->get_result()->num_rows > 0;
+                $stmt->close();
 
-                $reservaResultado = ReservaModel::criar($connect, [ 
-                    "id_adicional_fk"=> null ,
-                    "id_quarto_fk"=> $quarto,
-                    "id_pedido_fk"=> $pedido, 
+                if($temConflito){
+                    $reservasResumo[] = [
+                        "id_quarto_fk" => $idQuarto,
+                        "status" => "conflito",
+                        "mensagem" => "Datas em conflito para este quarto"
+                    ];
+                    continue;
+                }
+
+                $okReserva = ReservaModel::criar($connect, [
+                    "id_adicional_fk" => null,
+                    "id_quarto_fk" => $idQuarto,
+                    "id_pedido_fk" => $pedidoId,
                     "dataInicio" => $inicio,
                     "dataFim" => $fim
                 ]);
-                $reservou = true;
-                $reservas[] = [
-                    "id_quarto_fk" => $ordem_id,
-                    "id_pedido_fk" = 
-                ]
 
+                $reservasResumo[] = [
+                    "id_quarto_fk" => $idQuarto,
+                    "status" => $okReserva ? "reservado" : "erro",
+                    "mensagem" => $okReserva ? "Reserva criada" : "Falha ao reservar"
+                ];
             }
-            
+
+            $connect->commit();
+            return [
+                "pedido" => $pedidoId,
+                "reservas" => $reservasResumo
+            ];
         } catch (\Throwable $th) {
-            try {
-                $connect->rollback();
-            } catch (\Throwable $th2) {
-                throw $th;
-            }
+            $connect->rollback();
+            throw $th;
         }
     }
 

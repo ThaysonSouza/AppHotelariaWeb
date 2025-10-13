@@ -4,7 +4,7 @@ class ValidatorController{
     public static function validate_data($data, $campos){
         $pendente = [];
         foreach ($campos as $lbl){
-            if (!isset($data[$lbl]) && empty($data[$lbl]) ){
+            if (!isset($data[$lbl]) && empty($data[$lbl])){
                 $pendente[] = $lbl;
             }
         }

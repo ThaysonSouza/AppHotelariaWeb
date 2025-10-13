@@ -12,6 +12,24 @@ body {
     color: #333;
 }
 
+/* Spinner overlay */
+.spinner-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+}
+
+.spinner-content {
+    background: #fff;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
 .titulo {
     color: var(--dark-color);
 }
@@ -61,7 +79,7 @@ body {
 }
 
 /* Estilos específicos para os containers */
-.room-cards-container {
+.lounge-cards-container {
     background: white ;
     padding: 2rem 0;
     margin: 0;
@@ -72,6 +90,57 @@ body {
     justify-content: center;
     align-items: center;
     gap: 35px;
+}
+
+/* CardLounge custom styles */
+.lounge-card {
+    width: 18rem;
+    height: 17rem;
+    border: none;
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.lounge-card img {
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.lounge-card .lounge-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.lounge-card .lounge-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.lounge-toggle-label{
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.lounge-dropdown{
+    border-radius: 8px 8px 0 0;
+}
+
+.lounge-card .dropdown-menu {
+    border-radius: 0.375rem 0.375rem 0 0;
+    padding: 0.75rem 1rem;
+}
+
+.lounge-card .dropdown-menu p {
+    text-align: center;
+    margin: 0;
 }
 
 /* DataSelector */
