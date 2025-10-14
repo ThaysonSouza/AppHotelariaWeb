@@ -14,10 +14,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 $baseFolder = strtolower(basename(dirname(__FILE__)));
 $uri = str_replace("/$baseFolder", "", $uri);
-$segments = explode("/", trim($uri, "/"));
+$segmentos = explode("/", trim($uri, "/"));
 
-$route = $segments[0] ?? null;
-$subRoute = $segments[1] ?? null;
+$route = $segmentos[0] ?? null;
+$subRoute = $segmentos[1] ?? null;
 
 if ($route != "api") {
     require __DIR__ . "/public/index.html";

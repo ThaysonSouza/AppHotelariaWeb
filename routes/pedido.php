@@ -19,7 +19,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     }  
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
-    $opcao = $segments[2] ?? null;    
+    $opcao = $seguimentos[2] ?? null;    
     $data = json_decode(file_get_contents('php://input'), true);
     if($opcao == "OrdemReserva"){
         PedidoController::ordemPedido($connect, $data);

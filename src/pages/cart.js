@@ -15,25 +15,31 @@ export default function renderCartPage() {
     divRoot.innerHTML = '';
 
     
-    // Criar container principal do carrinho
+    // Cria container principal do carrinho
     const cartContainer = document.createElement('div');
     cartContainer.className = 'cart-container';
     cartContainer.style.marginTop = '10%';
 
-    // Adicionar cabeçalho
+    // Adiciona cabeçalho
     const cartHeader = CartHeader();
     cartContainer.appendChild(cartHeader);
 
-    // Adicionar lista de quartos
+    // Adiciona lista de quartos (exemplos estáticos, sem funções e sem localStorage)
     const roomsList = document.createElement('div');
     roomsList.className = 'rooms-list';
-    
-    
+    const items = [
+        { nome: 'Suíte Standard', camaCasal: 1, camaSolteiro: 0, preco: 350.00 },
+        { nome: 'Quarto Família', camaCasal: 1, camaSolteiro: 2, preco: 520.00 },
+        { nome: 'Suíte Master', camaCasal: 1, camaSolteiro: 1, preco: 680.00 }
+    ];
+    items.forEach((room, i) => roomsList.appendChild(CartRoomCard(room, i)));
     cartContainer.appendChild(roomsList);
 
     // Adicionar rodapé
     const cartFooter = CartFooter();
     cartContainer.appendChild(cartFooter);
+    const totalEl = cartFooter.querySelector('#cartTotal');
+    if (totalEl){ totalEl.textContent = 'R$ 1550,00'; }
 
     divRoot.appendChild(cartContainer);
 

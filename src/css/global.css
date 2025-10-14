@@ -92,42 +92,28 @@ body {
     gap: 35px;
 }
 
-/* CardLounge custom styles */
+/* CardLounge - estilo inspirado nos cards "Explore Senac" */
 .lounge-card {
+    position: relative;
     width: 18rem;
-    height: 17rem;
-    border: none;
-    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
-    overflow: hidden;
+    height: 12rem;
     border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
 }
 
-.lounge-card img {
-    height: 60%;
-    width: 100%;
-    object-fit: cover;
+.lounge-image { position: relative; width: 100%; height: 100%; }
+.lounge-image img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform .35s ease; }
+.lounge-overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0.75rem 1rem; color: #fff;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
+    transition: background .3s ease;
 }
-
-.lounge-card .lounge-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-}
-
-.lounge-card .lounge-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--dark-color);
-    margin: 0;
-}
-
-.lounge-toggle-label{
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    font-weight: 600;
-}
+.lounge-title { margin: 0; font-size: 1rem; font-weight: 700; }
+.lounge-desc { margin: 0.25rem 0 0; font-size: .9rem; line-height: 1.2rem; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .35s ease; }
+.lounge-card:hover .lounge-image img { transform: scale(1.05); }
+.lounge-card:hover .lounge-desc { max-height: 6rem; opacity: 1; }
 
 .lounge-dropdown{
     border-radius: 8px 8px 0 0;
@@ -141,6 +127,25 @@ body {
 .lounge-card .dropdown-menu p {
     text-align: center;
     margin: 0;
+}
+
+/* Lounge */
+.lounge-card .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.lounge-card .btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.lounge-card .btn:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px);
 }
 
 /* DataSelector */
