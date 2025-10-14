@@ -16,7 +16,6 @@ export default function CardLounge(cardLoungeItem, index = 0){
                     <img src="public/assets/images/caret-up.svg" width="20" height="20" alt="abrir">
                 </span>
                 <span class="lounge-title">${titulo}</span>
-                <span class="lounge-toggle-label">ver descrição</span>
             </button>
             <ul class="dropdown-menu w-100 lounge-dropdown">
                 <li><p>${texto}</p></li>
