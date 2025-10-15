@@ -92,6 +92,7 @@ body {
     gap: 35px;
 }
 
+
 /* CardLounge  */
 .lounge-card {
     position: relative;
@@ -603,4 +604,54 @@ body {
 
 .btn{
     color: white;
+}
+
+
+/* CardLounge */
+.lounge-card {
+    width: 10rem;
+    height: 17rem;
+    border: none;
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.lounge-card img {
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.lounge-card .lounge-header {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.lounge-card .lounge-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.lounge-toggle-label{
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.lounge-dropdown{
+    border-radius: 8px 8px 0 0;
+}
+
+.lounge-card .dropdown-menu {
+    border-radius: 0.375rem 0.375rem 0 0;
+    padding: 0.75rem 1rem;
+}
+
+.lounge-card .dropdown-menu p {
+    text-align: center;
+    margin: 0;
 }

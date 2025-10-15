@@ -39,10 +39,10 @@ export default function renderHomePage() {
     // Criar container para cards de infraestrutura (lounge)
     const infraGroup = document.createElement('div');
     infraGroup.className = 'lounge-cards-container';
-    const tituloInfra  = document.createElement('h2');
+    const tituloInfra = document.createElement('h2');
     tituloInfra.textContent = "Nosso hotel";
     tituloInfra.style.textAlign = "center";
-    
+
 
     // Criar container para os cards de quartos (resultados)
     const cardsGroup = document.createElement('div');
@@ -51,34 +51,48 @@ export default function renderHomePage() {
 
 
     const loungeItens = [
-        {caminho: "restaurante.jpeg", titulo: "Restaurante", 
-            texto: "Nosso restaurante capaz de encantar os paladares mais exigentes. Aprecie o menu exclusivo em ambiente aconchegante, com atendimento personalizado e na charmosa região dos Jardins"},
-        {caminho: "salao.jpg", titulo: "Salão de festas", 
+        {
+            caminho: "restaurante.jpeg", titulo: "Restaurante",
+            texto: "Nosso restaurante capaz de encantar os paladares mais exigentes. Aprecie o menu exclusivo em ambiente aconchegante, com atendimento personalizado e na charmosa região dos Jardins"
+        },
+        {
+            caminho: "salao.jpg", titulo: "Salão de festas",
             texto: "O Nocturne Royal, possui uma áreas para festa, distribuídas em 09 salas, localizadas em dois andares totalmente dedicados à realização de eventos. " +
-            "Apresenta estrutura versátil e uma equipe exclusiva de profissionais especializados em eventos corporativos e sociais"},
-        {caminho: "bar.jpg", titulo: "Bar", 
-            texto: "Um cardápio variado de bebidas e petiscos, unido a uma atmosfera cosmopolita, proporciona momentos únicos entre amigos."}
+                "Apresenta estrutura versátil e uma equipe exclusiva de profissionais especializados em eventos corporativos e sociais"
+        },
+        {
+            caminho: "bar.jpg", titulo: "Bar",
+            texto: "Um cardápio variado de bebidas e petiscos, unido a uma atmosfera cosmopolita, proporciona momentos únicos entre amigos."
+        }
     ];
 
-    for(let i = 0; i < loungeItens.length; i++){
+    for (let i = 0; i < loungeItens.length; i++) {
         const cardLounge = CardLounge(loungeItens[i], i);
         infraGroup.appendChild(cardLounge);
     }
 
     /* A depender da dara de check-in, será 
-    calculado o minimo para a data de check-out, ou seja, o minimo de diarias*/ 
-    function getMinDateCheckout(dateCheckIn){
+    calculado o minimo para a data de check-out, ou seja, o minimo de diarias*/
+    function getMinDateCheckout(dateCheckIn) {
         const minDiaria = new Date(dateCheckIn);
         minDiaria.setDate(minDiaria.getDate() + 1);
         return minDiaria.toISOString().split('T')[0];
     }
 
     /*Evento para monitorar a alteraçao na data de check-in 
-    para mudar o calendario do check-out*/
-    dateCheckIn.addEventListener("change", async(e) => {
-        if(this.value){
-            const minDateCheckout = getMinDateCheckout(this.value);
+    para calcular o minimo do check-out e verificar
+    */
+    dateCheckIn.addEventListener("change", async (e) => {
+        //caso haja um valor valido em dateCheck-in
+        if (dateCheckIn.value) {
+            const minDateCheckout = getMinDateCheckout(dateCheckIn.value);
             dateCheckOut.min = minDateCheckout;
+
+            //Caso haja uma data invalida em check-out 
+            if (dateCheckOut.value && dateCheckOut.value <= dateCheckIn.value) {
+                dateCheckOut.value = "";
+                Modal("A data de check-out deve ser posterior à data de check-in.");
+            }
         }
     });
 
@@ -92,16 +106,6 @@ export default function renderHomePage() {
         // Validar preenchimento dos campos
         if (!dataInicio || !dataFim || Number.isNaN(qtd) || qtd <= 0) {
             Modal("Por favor, preencha todos os campos corretamente.", "Campos Obrigatórios");
-            return;
-        }
-
-        // Validar datas
-        const inicio = new Date(dataInicio);
-        const fim = new Date(dataFim);
-        
-
-        if (isNaN(inicio) || isNaN(fim) || inicio >= fim) {
-            Modal("A data de check-out deve ser posterior à data de check-in.", "Data Inválida");
             return;
         }
 
