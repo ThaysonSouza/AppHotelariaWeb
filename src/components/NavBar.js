@@ -35,6 +35,10 @@ export default function NavBar() {
                 </li>
  
                 <li class="nav-item">
+                <a class="nav-link" href="register-room">Cadastrar Quarto</a>
+                </li>
+ 
+                <li class="nav-item">
                 <a class="nav-link" href="login">Login</a>
                 </li>
             </ul>

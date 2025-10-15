@@ -6,7 +6,6 @@ import renderCartPage from './pages/cart.js';
 
 //Configuração de rotas
 const routes = {
-
     "/login": renderLoginPage,
     "/register": renderRegisterPage,
     "/home": renderHomePage,

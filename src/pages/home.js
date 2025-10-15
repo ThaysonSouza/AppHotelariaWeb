@@ -136,7 +136,6 @@ export default function renderHomePage() {
         }
     });
 
-    // Adicionar containers ao root: primeiro infraestrutura, depois resultados
     divRoot.appendChild(cardsGroup);
     divRoot.appendChild(tituloInfra);
     divRoot.appendChild(infraGroup);

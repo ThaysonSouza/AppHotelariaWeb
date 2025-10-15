@@ -1,17 +1,17 @@
 /* Estilização dos inputs */
 input {
     border-style: solid;
-    border-color: var(--secondary-color); /* Roxo vibrante */
+    border-color: var(--secondary-color); 
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px 15px;
     transition: all 0.3s ease;
-    width: 100%; /* Garante que os inputs ocupem toda a largura */
+    width: 100%; 
 }
 
 /* Foco nos inputs */
 input:focus {
     outline: none;
-    border: 2px solid var(--secondary-color); /* Roxo vibrante */
-    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); /* Sombra roxa */
+    border: 2px solid var(--secondary-color); 
+    box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25); 
 }

@@ -24,7 +24,7 @@ export default function renderCartPage() {
     const cartHeader = CartHeader();
     cartContainer.appendChild(cartHeader);
 
-    // Adiciona lista de quartos (exemplos estáticos, sem funções e sem localStorage)
+    // Adiciona lista de quartos (exemplos estáticos)
     const roomsList = document.createElement('div');
     roomsList.className = 'rooms-list';
     const items = [

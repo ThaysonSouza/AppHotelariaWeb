@@ -1,5 +1,4 @@
 <?php
-require_once  "validadorController.php";
 require_once __DIR__ . "/../models/PedidoModel.php";
 
 class PedidoController{
@@ -11,27 +10,7 @@ class PedidoController{
             return jsonResponse(['message'=>"Erro ao criar"], 400);
 
         }
-    }
 
-    public static function ordemPedido($connect, $data){
-        $data["id_usuario_fk"] = isset($data['id_usuario_fk']) ? $data['id_usuario_fk'] : null;
-
-        ValidatorController::validate_data($data,["id_cliente_fk", "pagamento", "quartos"]);
-
-        if (!is_array($data['quartos']) || count($data['quartos']) === 0){
-            return jsonResponse(['message'=>"nao existe reservas"], 400);
-        }
-        
-        foreach($data['quartos'] as $index => $quarto){
-            ValidatorController::validate_data($quarto,["id", "dataInicio", "dataFim"]);
-            // Normaliza horas padrão
-            $quarto["dataInicio"] = ValidatorController::dataHora($quarto["dataInicio"], 14);
-            $quarto["dataFim"] = ValidatorController::dataHora($quarto["dataFim"], 12);
-            $data['quartos'][$index] = $quarto;
-        }
-
-        $resultado = PedidoModel::criarOrdem($connect, $data);
-        return jsonResponse($resultado);
     }
 
     public static function listarTodos($connect){
