@@ -57,8 +57,7 @@ export default function renderHomePage() {
         },
         {
             caminho: "salao.jpg", titulo: "Salão de festas",
-            texto: "O Nocturne Royal, possui uma áreas para festa, distribuídas em 09 salas, localizadas em dois andares totalmente dedicados à realização de eventos. " +
-                "Apresenta estrutura versátil e uma equipe exclusiva de profissionais especializados em eventos corporativos e sociais"
+            texto: "O Nocturne Royal, possui uma áreas para festa, distribuídas em 09 salas, localizadas em dois andares totalmente dedicados à realização de eventos."
         },
         {
             caminho: "bar.jpg", titulo: "Bar",

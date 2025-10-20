@@ -625,7 +625,6 @@ body {
 
 .lounge-card .lounge-header {
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
 

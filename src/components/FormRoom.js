@@ -1,4 +1,4 @@
-import Modal from "../components/Modal.js";
+// import Modal from "../components/Modal";
 
 export default function FormRoom() {
     const form = document.createElement('form');
@@ -47,7 +47,7 @@ export default function FormRoom() {
     const dispLabel = document.createElement('label');
     dispLabel.textContent = 'Disponível?';
     dispLabel.className = 'form-label me-3 d-block';
-    
+
     const dispDiv = document.createElement('div');
     dispDiv.className = 'form-check form-switch mb-3';
     const dispInput = document.createElement('input');
