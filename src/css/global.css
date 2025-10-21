@@ -93,18 +93,7 @@ body {
 }
 
 
-/* CardLounge  */
-.lounge-card {
-    position: relative;
-    width: 18rem;
-    height: 12rem;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-}
-
-.lounge-image { position: relative; width: 100%; height: 100%; }
-.lounge-image img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform .35s ease; }
+/* CardLounge */
 .lounge-overlay {
     position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0.75rem 1rem; color: #fff;
@@ -113,7 +102,6 @@ body {
 }
 .lounge-title { margin: 0; font-size: 1rem; font-weight: 700; }
 .lounge-desc { margin: 0.25rem 0 0; font-size: .9rem; line-height: 1.2rem; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .35s ease; }
-.lounge-card:hover .lounge-image img { transform: scale(1.05); }
 .lounge-card:hover .lounge-desc { max-height: 6rem; opacity: 1; }
 
 .lounge-dropdown{
@@ -607,55 +595,15 @@ body {
 }
 
 
-/* CardLounge */
-.lounge-card {
-    width: 10rem;
-    height: 17rem;
-    border: none;
-    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
-    overflow: hidden;
-    border-radius: 12px;
-}
 
-.lounge-card img {
-    height: 60%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.lounge-card .lounge-header {
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-}
-
-.lounge-card .lounge-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: white;
-    margin: 0;
-}
-
-.lounge-dropdown{
-    border-radius: 8px 8px 0 0;
-}
-
-.lounge-card .dropdown-menu {
-    border-radius: 0.375rem 0.375rem 0 0;
-    padding: 0.75rem 1rem;
-}
-
-.lounge-card .dropdown-menu p {
-    text-align: center;
-    margin: 0;
-}
-
+/* CardLounge - versão final consolidada */
 .lounge-cards-container {
     flex-wrap: wrap;
     gap: 28px;
 }
 
 .lounge-card {
+    position: relative;
     width: 20rem;
     border-radius: 16px;
     overflow: hidden;
