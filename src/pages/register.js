@@ -71,7 +71,7 @@ export default function renderRegisterPage() {
     formulario.appendChild(btnVoltar);
 
     //Monitorar o clique no botao para adicionar um evento de submeter os dados 
-    formulario.addEventListener("submit", async(e)=> {
+    formulario.addEventListener("submit", async (e) => {
         e.preventDefault();
         const nome = inputNome.value.trim();
         const cpf = inputCPF.value.trim();
@@ -79,10 +79,10 @@ export default function renderRegisterPage() {
         const email = inputEmail.value.trim();
         const senha = inputSenha.value.trim();
 
-        try{
+        try {
             const result = createRequest(nome, cpf, telefone, email, senha);
         }
-        catch{
+        catch {
             console.log("Erro inesperado!");
         }
     });

@@ -4,7 +4,7 @@ import Footer from "../components/Footer.js";
 
 export default function renderRegisterRoomPage() {
     const root = document.getElementById('main-content');
-    root.innerHTML= ''; 
+    root.innerHTML = '';
 
     // Navbar
     const nav = document.getElementById('navbar');

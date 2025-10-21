@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
 }
- 
+
 /* Card principal do formulário */
 .card {
     background: white;
@@ -16,10 +16,11 @@ body {
     transition: all 0.3s ease;
     max-width: 700px;
     width: 100%;
-    margin: 20px auto; /* Margem para o card */
+    margin: 20px auto;
+    /* Margem para o card */
 }
- 
- 
+
+
 /* Estilização dos inputs */
 input[type="text"],
 input[type="email"],
@@ -31,7 +32,7 @@ input[type="password"] {
     background-color: #f9f9f9;
     width: 100%;
 }
- 
+
 /* Focus nos inputs */
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -40,29 +41,31 @@ input[type="password"]:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(106, 27, 154, 0.15);
 }
- 
+
 /* Estilização do título */
 .titulo {
     color: var(--primary-color);
     font-weight: 700;
     font-size: 2.5rem;
     position: relative;
-    padding-bottom: 30px; /* Espaço para o sublinhado */
+    padding-bottom: 30px;
+    /* Espaço para o sublinhado */
     text-align: center;
 }
- 
+
 .titulo::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px; /* Largura do sublinhado */
+    width: 60px;
+    /* Largura do sublinhado */
     height: 3px;
     background-color: var(--secondary-color);
     border-radius: 5px;
 }
- 
+
 /* Botão principal */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -75,27 +78,27 @@ input[type="password"]:focus {
     margin-top: 15px;
     width: 100%;
 }
- 
+
 /* Hover no botão */
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
 }
- 
+
 /* Estilo para o botão secundário (Voltar ao Login) */
 .btn-link {
-    color:white;
+    color: white;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
 }
- 
+
 .btn-link:hover {
     color: white;
     text-decoration: underline;
 }
- 
+
 /* Campos de formulário */
 .form-group {
     margin-bottom: 20px;
