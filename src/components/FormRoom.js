@@ -1,107 +1,79 @@
-// import Modal from "../components/Modal";
+import Modal from "./Modal.js";
 
 export default function FormRoom() {
     const form = document.createElement('form');
     form.className = 'p-4 card shadow-lg m-4';
     form.enctype = 'multipart/form-data';
 
-    // Nome
-    const nomeLabel = document.createElement('label');
-    nomeLabel.textContent = 'Nome do quarto';
-    const nomeInput = document.createElement('input');
-    nomeInput.type = 'text';
-    nomeInput.name = 'nome';
-    nomeInput.className = 'form-control mb-3';
-    nomeInput.required = true;
+    form.innerHTML = `
+        <h2 class="mb-4 text-center" style="color: var(--primary-color);">Cadastro de Quarto</h2>
+        
+        <div class="mb-3">
+            <label class="form-label">Nome do quarto</label>
+            <input type="text" name="nome" class="form-control" placeholder="Ex: Suíte Master" required>
+        </div>
 
-    // Número
-    const numeroLabel = document.createElement('label');
-    numeroLabel.textContent = 'Número do quarto';
-    const numeroInput = document.createElement('input');
-    numeroInput.type = 'text';
-    numeroInput.name = 'numero';
-    numeroInput.className = 'form-control mb-3';
-    numeroInput.required = true;
+        <div class="mb-3">
+            <label class="form-label">Número do quarto</label>
+            <input type="text" name="numero" class="form-control" placeholder="Ex: 101" required>
+        </div>
 
-    // Cama de casal
-    const casalLabel = document.createElement('label');
-    casalLabel.textContent = 'Quantidade de camas de casal';
-    const casalInput = document.createElement('input');
-    casalInput.type = 'number';
-    casalInput.name = 'cama_casal';
-    casalInput.className = 'form-control mb-3';
-    casalInput.min = 0;
-    casalInput.required = true;
+        <div class="mb-3">
+            <label class="form-label">Quantidade de camas de casal</label>
+            <input type="number" name="cama_casal" class="form-control" min="0" placeholder="0" required>
+        </div>
 
-    // Cama de solteiro
-    const solteiroLabel = document.createElement('label');
-    solteiroLabel.textContent = 'Quantidade de camas de solteiro';
-    const solteiroInput = document.createElement('input');
-    solteiroInput.type = 'number';
-    solteiroInput.name = 'cama_solteiro';
-    solteiroInput.className = 'form-control mb-3';
-    solteiroInput.min = 0;
-    solteiroInput.required = true;
+        <div class="mb-3">
+            <label class="form-label">Quantidade de camas de solteiro</label>
+            <input type="number" name="cama_solteiro" class="form-control" min="0" placeholder="0" required>
+        </div>
 
-    // Disponibilidade
-    const dispLabel = document.createElement('label');
-    dispLabel.textContent = 'Disponível?';
-    dispLabel.className = 'form-label me-3 d-block';
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="disponibilidade" id="disponibilidade" checked>
+                <label class="form-check-label" for="disponibilidade">
+                    Quarto disponível
+                </label>
+            </div>
+        </div>
 
-    const dispDiv = document.createElement('div');
-    dispDiv.className = 'form-check form-switch mb-3';
-    const dispInput = document.createElement('input');
-    dispInput.type = 'checkbox';
-    dispInput.name = 'disponibilidade';
-    dispInput.className = 'form-check-input';
-    dispInput.checked = true;
+        <div class="mb-3">
+            <label class="form-label">Preço por diária (R$)</label>
+            <input type="number" name="preco" class="form-control" min="0" step="0.01" placeholder="0.00" required>
+        </div>
 
-    dispDiv.appendChild(dispInput);
+        <div class="mb-3">
+            <label for="imagens" class="form-label">Imagens do quarto</label>
+            <input class="form-control" type="file" id="imagens" name="imagens" multiple accept="image/*">
+            <div class="form-text">Selecione uma ou mais imagens do quarto</div>
+        </div>
 
-    // Preço
-    const precoLabel = document.createElement('label');
-    precoLabel.textContent = 'Preço (R$)';
-    const precoInput = document.createElement('input');
-    precoInput.type = 'number';
-    precoInput.name = 'preco';
-    precoInput.className = 'form-control mb-3';
-    precoInput.min = 0;
-    precoInput.step = '0.01';
-    precoInput.required = true;
-
-    const imgLabel = document.createElement('label');
-    imgLabel.textContent = 'Imagens do quarto';
-    const imgInput = document.createElement('input');
-    imgInput.type = 'file';
-    imgInput.name = 'imagens';
-    imgInput.className = 'form-control mb-3';
-    imgInput.multiple = true;
-    imgInput.accept = 'image/*';
-
-    // Botão de envio
-    const btn = document.createElement('button');
-    btn.type = 'submit';
-    btn.textContent = 'Cadastrar Quarto';
-    btn.className = 'btn btn-primary mt-3';
-
-    // Montagem
-    form.append(
-        nomeLabel, nomeInput,
-        numeroLabel, numeroInput,
-        casalLabel, casalInput,
-        solteiroLabel, solteiroInput,
-        dispLabel, dispDiv,
-        precoLabel, precoInput,
-        imgLabel, imgInput,
-        btn
-    );
+        <button type="submit" class="btn btn-primary mt-3 w-100">Cadastrar Quarto</button>
+        <button type="button" class="btn btn-secondary mt-2 w-100" id="btnVoltar">Voltar</button>
+    `;
 
     // Evento de envio
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-        console.log('Dados do quarto:', Object.fromEntries(formData.entries()));
-        Modal('Quarto cadastrado com sucesso!');
+        const imgInput = form.querySelector('#imagens');
+        
+        // Validar imagens
+        if (imgInput.files.length === 0) {
+            Modal('Selecione pelo menos uma imagem do quarto.', 'Erro');
+            return;
+        }
+
+        // Simular cadastro
+        const dados = Object.fromEntries(formData.entries());
+        Modal(`Quarto "${dados.nome}" cadastrado com sucesso!`, 'Sucesso');
+        form.reset();
+        form.querySelector('#disponibilidade').checked = true;
+    });
+
+    // Botão voltar
+    form.querySelector('#btnVoltar').addEventListener('click', () => {
+        window.location.hash = '/home';
     });
 
     return form;
