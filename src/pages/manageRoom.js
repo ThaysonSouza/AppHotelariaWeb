@@ -1,6 +1,6 @@
-import FormRoom from "../components/FormRoom.js";
 import Navbar from "../components/NavBar.js";
 import Footer from "../components/Footer.js";
+import LoginForm from "../components/loginForm.js";
 
 export default function renderRegisterRoomPage() {
     const root = document.getElementById('main-content');
@@ -17,7 +17,8 @@ export default function renderRegisterRoomPage() {
     title.className = 'text-center mt-4 mb-3';
 
     // Formulário
-    const formulario = FormRoom();
+    const formulario = LoginForm();
+    
 
     // Adiciona ao root
     root.appendChild(title);
