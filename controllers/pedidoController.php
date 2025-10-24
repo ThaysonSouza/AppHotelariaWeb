@@ -10,7 +10,30 @@ class PedidoController{
             return jsonResponse(['message'=>"Erro ao criar"], 400);
 
         }
+    }
+     public static function createOrder($connect, $data){
+        $data["id_usuario_fk"] = isset($data['id_usuario_fk']) ? $data['id_usuario_fk']: null;
 
+        ValidatorController::validate_data($data, ["id_usuario_fk", "pagamento", "quartos"]);
+
+        foreach($data['quartos'] as $quarto){
+            ValidatorController::validate_data($quarto, ["id", "inicio", "fim"]);
+
+            $quarto["inicio"] = ValidatorController::dataHora($quarto["inicio"], 14);
+            $quarto["fim"] = ValidatorController::dataHora($quarto["fim"], 12);
+        }
+        
+        if ( count($data["quartos"]) == 0){
+            return jsonResponse(['message'=> 'Não existe reservas'], 400);
+        }
+
+        try{
+            $resultado = PedidoModel::criarOrdem($connect, $data);
+            return jsonResponse(['message' => $resultado]);
+            
+        }catch(\Throwable $erro){
+            return jsonResponse(['message' => $erro->getMessage()], 500);
+        }
     }
 
     public static function listarTodos($connect){

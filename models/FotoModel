@@ -1,0 +1,73 @@
+<?php
+
+class FotoModel{
+
+    public static function BuscarTodas($connect){
+        $sql = "SELECT * FROM imagens";
+        $result = $connect->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public static function BuscarPorId($connect, $id){
+        $sql = "SELECT * FROM imagens WHERE id=?";
+        $stmt = $connect->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public static function buscarPorIdQuarto($connect, $id){
+        $sql = "SELECT f.caminho
+        FROM quartos_fotos qf
+        JOIN Imagens f ON qf.foto_id = f.id
+        WHERE qf.quarto_id = ?";
+
+        $stmt = $connect->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $fotos = [];
+        while ( $row = $result->fetch_assoc()){
+            $fotos[] = $row['caminho'];
+        }
+        return $fotos;
+    }
+
+    public static function criar($connect, $caminho){
+        $sql = "INSERT INTO imagens (caminho) VALUES (?)";
+        $stmt = $connect->prepare($sql);
+        $stmt->bind_param("s", $caminho);
+        if ($stmt->execute()){
+            return $connect->insert_id;
+        }
+        return false;
+    }
+
+    public static function criarRelacaoQuarto($connect, $idQuarto, $idFoto){
+        $sql = "INSERT INTO quartos_fotos (id_quarto_fk, id_foto_fk) VALUES (?, ?)";
+        $stmt = $connect->prepare($sql);
+        $stmt->bind_param("ii", $idQuarto, $idFoto);
+        if ($stmt->execute()){
+            return $connect->insert_id;
+        }
+        return false;
+    }
+
+    public static function update($connect, $id, $caminho){
+        $sql = "UPDATE imagens SET caminho=? WHERE id=?";
+        $stmt = $connect->prepare($sql);
+        $stmt->bind_param("si", $caminho, $id);
+        return $stmt->execute();
+    }
+
+    public static function delete($connect, $id){
+        $sql = "DELETE FROM imagens WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+}
+
+?>

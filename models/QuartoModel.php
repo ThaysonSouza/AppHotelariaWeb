@@ -23,7 +23,10 @@
             $data["camaSolteiro"],
             $data["disponivel"],
             $data["preco"]);
-            return $stmt->execute();
+            if ($stmt->execute()){
+            return $connect->insert_id;
+            }
+            return false;
         }
         public static function atualizar($connect, $id, $data){
             $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?,  camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";

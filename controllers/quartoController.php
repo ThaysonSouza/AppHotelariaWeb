@@ -4,22 +4,24 @@ require_once "ValidadorController.php";
 
 
 class QuartoController{
-    
-    public static $labels = ['nome', 'numero', 'qtd_cama_casal', 'qtd_cama_solteiro', 'preco', 'disponivel'];
 
     public static function criar($connect, $data){
-        $validar = ValidatorController::issetData($data, self::$labels);
+        $validar = ValidatorController::validate_data($data,["nome", "numero", "camaCasal", "camaSolteiro", "preco", "disponivel"] );
         
-        if( !empty($validar) ){
-            $dados = implode(", ", $validar);
-            return jsonResponse(['message'=>"Erro, Falta o campo: ".$dados], 400);
-        }
-
         $result = QuartoModel::criar($connect, $data);
-        if($result){
+         if ($result){
+            if ($data['imagens']){
+                $fotos = UploadController::upload($data['imagens']);
+                foreach($fotos['salvas'] as $caminho){
+                    $idFoto = FotoModel::criar($connect, $caminho['caminho']);
+                    if ($idFoto){
+                        FotoModel::criarRelacaoQuarto($connect, $result, $idFoto);
+                    }
+                }
+            }
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
         }else{
-            return jsonResponse(['message'=>"Erro ao criar"], 400);
+            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
         }
     }
 
@@ -62,7 +64,10 @@ class QuartoController{
 
         $result = QuartoModel::buscarDisponiveis($connect, $data);
         if($result){
-            return jsonResponse(['Quartos'=> $result]);
+            foreach($result as &$quarto){
+                $quarto['imagens'] = FotoModel::buscarPorIdQuarto($connect, $quarto['id']);
+            }
+            return jsonResponse(['Quartos' => $result]);
         }else{
             return jsonResponse(['message'=> 'não tem quartos disponiveis'], 400);
         }
