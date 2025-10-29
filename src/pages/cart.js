@@ -3,6 +3,7 @@ import Footer from "../components/Footer.js";
 import CartHeader from "../components/CartHeader.js";
 import CartRoomCard from "../components/CartRoomCard.js";
 import CartFooter from "../components/CartFooter.js";
+import { obterCarrinho, obterTotais } from "../store/cartStore.js";
 
 export default function renderCartPage() {
     const nav = document.getElementById('navbar');
@@ -24,22 +25,22 @@ export default function renderCartPage() {
     const cartHeader = CartHeader();
     cartContainer.appendChild(cartHeader);
 
-    // Adiciona lista de quartos (exemplos estáticos)
+    // Adiciona lista de quartos do carrinho persistido
     const roomsList = document.createElement('div');
     roomsList.className = 'rooms-list';
-    const items = [
-        { nome: 'Suíte Standard', camaCasal: 1, camaSolteiro: 0, preco: 350.00 },
-        { nome: 'Quarto Família', camaCasal: 1, camaSolteiro: 2, preco: 520.00 },
-        { nome: 'Suíte Master', camaCasal: 1, camaSolteiro: 1, preco: 680.00 }
-    ];
-    items.forEach((room, i) => roomsList.appendChild(CartRoomCard(room, i)));
+    const carrinho = obterCarrinho();
+    const itens = Array.isArray(carrinho.item) ? carrinho.item : [];
+    itens.forEach((room, i) => roomsList.appendChild(CartRoomCard(room, i)));
     cartContainer.appendChild(roomsList);
 
     // Adicionar rodapé
     const cartFooter = CartFooter();
     cartContainer.appendChild(cartFooter);
     const totalEl = cartFooter.querySelector('#cartTotal');
-    if (totalEl){ totalEl.textContent = 'R$ 1550,00'; }
+    if (totalEl){
+        const { total } = obterTotais();
+        totalEl.textContent = `R$ ${total.toFixed(2)}`;
+    }
 
     divRoot.appendChild(cartContainer);
 

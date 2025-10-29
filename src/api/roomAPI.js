@@ -32,3 +32,37 @@ export async function quartosDisponivelRequest({ dataInicio, dataFim, qtd }) {
     return quartos;
 
 }
+
+// Cadastrar novo quarto com upload de imagens
+export async function cadastrarQuarto(dados) {
+    // dados: { nome, numero, camaCasal, camaSolteiro, preco, disponivel, imagens }
+    const form = new FormData();
+    form.set("nome", String(dados?.nome ?? ""));
+    form.set("numero", String(dados?.numero ?? ""));
+    form.set("camaCasal", String(dados?.camaCasal ?? 0));
+    form.set("camaSolteiro", String(dados?.camaSolteiro ?? 0));
+    form.set("preco", String(dados?.preco ?? 0));
+    form.set("disponivel", String(dados?.disponivel ?? 1));
+
+    const arquivos = dados?.imagens || [];
+    if (arquivos && typeof arquivos.length === "number") {
+        for (let i = 0; i < arquivos.length; i++) {
+            if (arquivos[i]) form.append("imagens[]", arquivos[i]);
+        }
+    }
+
+    const response = await fetch("api/room", {
+        method: "POST",
+        body: form,
+        credentials: "same-origin"
+    });
+
+    let data = null;
+    try { data = await response.json(); } catch { data = null; }
+
+    if (!response.ok) {
+        const msg = data?.message || data?.mensagem || data?.menssagem || "Falha ao cadastrar quarto.";
+        throw new Error(msg);
+    }
+    return data;
+}

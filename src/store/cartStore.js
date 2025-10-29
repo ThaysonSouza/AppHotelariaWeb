@@ -1,37 +1,41 @@
-const key = "Nocturne_cart";
-export function setCart(cart) {
-    localStorage.setItem(key, JSON.stringify(cart));
+const chaveCarrinho = "Nocturne_cart";
+const chaveReserva = "Nocturne_reserva";
+
+export function definirCarrinho(carrinho) {
+    localStorage.setItem(chaveCarrinho, JSON.stringify(carrinho));
 }
 
-export function getCart() {
+export function obterCarrinho() {
     try {
-        const raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : { status: "draft", item: [] }
+        const bruto = localStorage.getItem(chaveCarrinho);
+        return bruto ? JSON.parse(bruto) : { status: "rascunho", item: [] };
     } catch {
-        return { status: "draft", item: [] };
+        return { status: "rascunho", item: [] };
     }
 }
-export function addItemToCart(item) {
-    const cart = getCart();
-    cart.item.push(item);
-    setCart(cart);
-    return cart;
+
+export function adicionarItemAoCarrinho(item) {
+    const carrinho = obterCarrinho();
+    carrinho.item.push(item);
+    definirCarrinho(carrinho);
+    return carrinho;
 }
-export function removeItemFromNocturne_cart(i){
-    const nocturne_cart = getCart();
-    nocturne_cart.item.splice(i, 1);
-    setCart(nocturne_cart);
-    return nocturne_cart;
+
+export function removerItemDoCarrinho(indice){
+    const carrinho = obterCarrinho();
+    carrinho.item.splice(indice, 1);
+    definirCarrinho(carrinho);
+    return carrinho;
 }
-export function clearNocturne_cart(){
-    setCart({
-        status : "draft",
+export function limparCarrinho(){
+    definirCarrinho({
+        status : "rascunho",
         item: []
     });
 }
 
-export function getTotalItem(){
-    const { item } = getCart();
+export function obterTotais(){
+    const { item } = obterCarrinho();
     const total = item.reduce((acc, it) => 
         acc + Number(it.subtotal || 0), 0    
     );
@@ -39,4 +43,19 @@ export function getTotalItem(){
         total,
         qtd_item : item.length
     }
+}
+
+export function salvarRascunhoReserva(reserva){
+    localStorage.setItem(chaveReserva, JSON.stringify(reserva || {}));
+}
+export function obterRascunhoReserva(){
+    try{
+        const bruto = localStorage.getItem(chaveReserva);
+        return bruto ? JSON.parse(bruto) : {};
+    }catch{
+        return {};
+    }
+}
+export function limparRascunhoReserva(){
+    localStorage.removeItem(chaveReserva);
 }

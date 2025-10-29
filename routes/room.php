@@ -15,7 +15,7 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
                 "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
             quartoController::buscarDisponiveis($connect, $data);
         }else{
-            jsonResponse(['messagem' =>'Rota nao identificada'], 400);
+            jsonResponse(['mensagem' =>'Rota nao identificada'], 400);
         }
     }else{
             quartoController::listarTodos($connect);
@@ -23,12 +23,12 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
-    $id = $seguimentos[2] ?? null;
+    $id = $segments[2] ?? null;
     
     if(isset($id)){
         QuartoController::delete($connect, $id);
     }else{
-        jsonResponse(['messagem' =>'É necessario passar o ID'], 400);
+        jsonResponse(['mensagem' =>'É necessario passar o ID'], 400);
     }   
 }
 
@@ -45,7 +45,7 @@ elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
 }
 
 else{
-    jsonResponse([ 'status'=>'erro', 'menssagem'=>'Metodo nao permitido'], 405);
+    jsonResponse([ 'status'=>'erro', 'mensagem'=>'Metodo nao permitido'], 405);
 }
 
 

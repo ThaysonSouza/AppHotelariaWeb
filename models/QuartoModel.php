@@ -14,32 +14,35 @@
             return $stmt->get_result()->fetch_assoc(); 
         }
         public static function criar($connect, $data){
-            $MYsql = "INSERT INTO quartos(nome, numero, camaSolteiro, camaCasal, disponivel, preco)VALUES (?, ?, ?, ?, ?, ?)";
+            $MYsql = "INSERT INTO quartos(nome, numero, camaSolteiro, camaCasal, disponivel, preco) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $connect->prepare($MYsql);
-            $stmt->bind_param("siiibd", 
-            $data["nome"],
-            $data["numero"],
-            $data["camaCasal"],
-            $data["camaSolteiro"],
-            $data["disponivel"],
-            $data["preco"]);
+            // Tipos: nome(s), numero(s), camaSolteiro(i), camaCasal(i), disponivel(i), preco(d)
+            $stmt->bind_param("ssiiid", 
+                $data["nome"],
+                $data["numero"],
+                $data["camaSolteiro"],
+                $data["camaCasal"],
+                $data["disponivel"],
+                $data["preco"]
+            );
             if ($stmt->execute()){
-            return $connect->insert_id;
+                return $connect->insert_id;
             }
             return false;
         }
         public static function atualizar($connect, $id, $data){
-            $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?,  camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";
+            $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";
             $stmt = $connect->prepare($MYsql);
-            $stmt->bind_param("siiibdi", 
-            $data["nome"],
-            $data["numero"],
-            $data["camaCasal"],
-            $data["camaSolteiro"],
-            $data["disponivel"],
-            $data["preco"],
-            $id
-        );
+            // Tipos: nome(s), numero(s), camaSolteiro(i), camaCasal(i), disponivel(i), preco(d), id(i)
+            $stmt->bind_param("ssiiidi", 
+                $data["nome"],
+                $data["numero"],
+                $data["camaSolteiro"],
+                $data["camaCasal"],
+                $data["disponivel"],
+                $data["preco"],
+                $id
+            );
             return $stmt->execute();
 
         }

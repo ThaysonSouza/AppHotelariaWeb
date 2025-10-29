@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/../models/QuartoModel.php";
 require_once "ValidadorController.php";
+require_once __DIR__ . "/UploadController.php";
+require_once __DIR__ . "/../models/FotoModel";
 
 
 class QuartoController{
@@ -9,19 +11,19 @@ class QuartoController{
         $validar = ValidatorController::validate_data($data,["nome", "numero", "camaCasal", "camaSolteiro", "preco", "disponivel"] );
         
         $result = QuartoModel::criar($connect, $data);
-         if ($result){
-            if ($data['imagens']){
+        if ($result){
+            if (!empty($data['imagens'])){
                 $fotos = UploadController::upload($data['imagens']);
-                foreach($fotos['salvas'] as $caminho){
-                    $idFoto = FotoModel::criar($connect, $caminho['caminho']);
+                foreach(($fotos['saves'] ?? []) as $foto){
+                    $idFoto = FotoModel::criar($connect, $foto['path']);
                     if ($idFoto){
                         FotoModel::criarRelacaoQuarto($connect, $result, $idFoto);
                     }
                 }
             }
-            return jsonResponse(['message'=>"Quarto criado com sucesso"]);
+            return jsonResponse(['mensagem'=>"Quarto criado com sucesso"], 201);
         }else{
-            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
+            return jsonResponse(['mensagem'=>"Erro ao criar o quarto"], 400);
         }
     }
 

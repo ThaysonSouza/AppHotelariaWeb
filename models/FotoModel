@@ -3,13 +3,13 @@
 class FotoModel{
 
     public static function BuscarTodas($connect){
-        $sql = "SELECT * FROM imagens";
+        $sql = "SELECT * FROM fotos";
         $result = $connect->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
     public static function BuscarPorId($connect, $id){
-        $sql = "SELECT * FROM imagens WHERE id=?";
+        $sql = "SELECT * FROM fotos WHERE id=?";
         $stmt = $connect->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -20,8 +20,8 @@ class FotoModel{
     public static function buscarPorIdQuarto($connect, $id){
         $sql = "SELECT f.caminho
         FROM quartos_fotos qf
-        JOIN Imagens f ON qf.foto_id = f.id
-        WHERE qf.quarto_id = ?";
+        JOIN fotos f ON qf.id_foto_fk = f.id
+        WHERE qf.id_quarto_fk = ?";
 
         $stmt = $connect->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -35,7 +35,7 @@ class FotoModel{
     }
 
     public static function criar($connect, $caminho){
-        $sql = "INSERT INTO imagens (caminho) VALUES (?)";
+        $sql = "INSERT INTO fotos (caminho) VALUES (?)";
         $stmt = $connect->prepare($sql);
         $stmt->bind_param("s", $caminho);
         if ($stmt->execute()){
@@ -55,15 +55,15 @@ class FotoModel{
     }
 
     public static function update($connect, $id, $caminho){
-        $sql = "UPDATE imagens SET caminho=? WHERE id=?";
+        $sql = "UPDATE fotos SET caminho=? WHERE id=?";
         $stmt = $connect->prepare($sql);
         $stmt->bind_param("si", $caminho, $id);
         return $stmt->execute();
     }
 
     public static function delete($connect, $id){
-        $sql = "DELETE FROM imagens WHERE id=?";
-        $stmt = $conn->prepare($sql);
+        $sql = "DELETE FROM fotos WHERE id=?";
+        $stmt = $connect->prepare($sql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
