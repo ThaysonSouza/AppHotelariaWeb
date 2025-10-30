@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../models/UserModel.php";
+require_once __DIR__ . "/../models/UsuarioModel.php";
 
-class UserController{
+class UsuarioController{
     public static function criar($connect, $data){
         $result = UsuarioModel::criar($connect, $data);
         if($result){

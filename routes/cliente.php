@@ -3,6 +3,7 @@ require_once __DIR__ . "/../controllers/ClienteController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $seguimentos[2] ?? null;   
+    validateTokenAPI("Gerente");
     if(isset($id)){
         ClienteController::buscarPorId($connect, $id);
     }
@@ -29,6 +30,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
+    validateTokenAPI("Gerente");
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];
     ClienteController::atualizar($connect, $id, $data);    

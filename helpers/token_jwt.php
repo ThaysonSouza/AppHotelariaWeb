@@ -19,23 +19,31 @@ function validateToken($token){
     try{
         $key = new Key(SECRET_KEY, "HS256");
         $decode = JWT::decode($token, $key);
-        return $decode->sub;
-
+        $result = json_decode( json_encode($decode->sub) , true);
+        return $result;
     }
     catch(Exception $error){
         return false; 
     }
 }
-function validateTokenAPI(){
+
+function validateTokenAPI($typeRole){
     $headers = getallheaders();
     if(!isset($headers["Authorization"]) ){
         jsonResponse(["messagem" => "Esta faltando o token"],401);
         exit;
     }
     $token = str_replace("Bearer ", "", $headers["Authorization"]);
-    if(!validateToken($token)){
+    $user = validateToken($token); 
+    if(!$user){
         jsonResponse(["messagem" => "O token esta invalido"],401);
         exit;
     }
+    //aqui vai ser a logica de validar cargo
+    if ($user['cargo'] != $typeRole){
+        jsonResponse(['mensagem' => "Usuario nao autorizado"], 401);
+        exit;
+    }
+    return $user;
 }
 ?>

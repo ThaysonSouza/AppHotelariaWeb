@@ -1,8 +1,12 @@
 <?php
 require_once __DIR__ . "/../models/AdicionalModel.php";
+require_once "validadorController.php";
 
 class AdicionalController{
     public static function criar($connect, $data){
+
+        ValidatorController::validate_data($data, ["nome", "preco"]);
+        
         $result = AdicionalModel::criar($connect, $data);
         if($result){
             return jsonResponse(['message'=>"Adicional criado com sucesso"]);

@@ -16,7 +16,6 @@
         public static function criar($connect, $data){
             $MYsql = "INSERT INTO quartos(nome, numero, camaSolteiro, camaCasal, disponivel, preco) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $connect->prepare($MYsql);
-            // Tipos: nome(s), numero(s), camaSolteiro(i), camaCasal(i), disponivel(i), preco(d)
             $stmt->bind_param("ssiiid", 
                 $data["nome"],
                 $data["numero"],
@@ -33,7 +32,6 @@
         public static function atualizar($connect, $id, $data){
             $MYsql = "UPDATE quartos SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ? WHERE id = ?";
             $stmt = $connect->prepare($MYsql);
-            // Tipos: nome(s), numero(s), camaSolteiro(i), camaCasal(i), disponivel(i), preco(d), id(i)
             $stmt->bind_param("ssiiidi", 
                 $data["nome"],
                 $data["numero"],
@@ -54,11 +52,12 @@
         }
         public static function buscarDisponiveis($connect, $data){
             $MYsql =
-            "SELECT * FROM quartos q WHERE q.disponivel = 1
-            AND ((q.camaCasal * 2) + q.camaSolteiro) >= ? AND q.id NOT IN (
-                SELECT r.id_quarto_fk FROM reservas r
-                WHERE (r.dataFim >= ? AND r.dataInicio <= ?)
-            )";
+            "SELECT * FROM quartos q WHERE q.disponivel = true
+            AND ((q.camaCasal * 2) + q.camaSolteiro) >= ?
+            AND q.id NOT IN (
+                SELECT r.id_quarto_fk
+                FROM reservas r 
+                WHERE (r.dataFim >= ? AND r.dataInicio <=))";
             $stmt = $connect->prepare($MYsql);
             $stmt->bind_param("iss",
                 $data["qtd"],

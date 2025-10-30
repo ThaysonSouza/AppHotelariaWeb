@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . "/../controllers/authController.php";
+require_once __DIR__ . "/../controllers/AuthController.php";
  
  
-if ($_SERVER['REQUEST_METHOD'] === "POST"){
-    $opcao = $segments[2] ?? null;
+if ( $_SERVER['REQUEST_METHOD'] === "POST"){
+    $opcao = $segmentos[2] ?? null;
     $data = json_decode(file_get_contents('php://input'), true);
  
     if($opcao == "cliente"){ //login Cliente

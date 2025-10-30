@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET"){
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $seguimentos[2] ?? null;
-    
+    $user = validateTokenAPI("Gerente");
     if(isset($id)){
         AdicionalController::delete($connect, $id);
     }else{
@@ -19,10 +19,12 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     }   
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
+    $user = validateTokenAPI("Gerente");
     $data = json_decode(file_get_contents('php://input'), true);
     AdicionalController::criar($connect, $data);
 }
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
+    $user = validateTokenAPI("Gerente");
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];
     AdicionalController::atualizar($connect, $id, $data);    
@@ -30,10 +32,7 @@ elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
 }
 
 else{
-    jsonResponse([
-        'status'=>'erro',
-        'menssagem'=>'Metodo nao permitido'
-    ], 405);
+    jsonResponse(['status'=>'erro','menssagem'=>'Metodo nao permitido'], 405);
 }
 
 

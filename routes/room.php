@@ -3,6 +3,7 @@ require_once __DIR__ . "/../controllers/QuartoController.php";
 
 if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     $id = $segments[2] ?? null;
+    validateTokenAPI("Gerente");
 
     if (isset($id)){
         if (is_numeric($id)){
@@ -24,7 +25,8 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     $id = $segments[2] ?? null;
-    
+    validateTokenAPI("Gerente");
+
     if(isset($id)){
         QuartoController::delete($connect, $id);
     }else{
@@ -33,12 +35,14 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
+    validateTokenAPI("Gerente");
     $data = $_POST;
     $data['imagens'] = $_FILES['imagens'] ?? null;
     QuartoController::criar($connect, $data);
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
+    validateTokenAPI("Gerente");
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'];
     QuartoController::atualizar($connect, $id, $data);     

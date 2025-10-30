@@ -1,11 +1,16 @@
 <?php
-    require_once __DIR__ . '/../models/UserModel.php';
-    require_once __DIR__ . '/../models/ClienteModel.php';
-    require_once 'PasswordController.php';
+    require_once "PasswordController.php";
+    require_once "validadorController.php";
+    
+    require_once __DIR__ . "/../models/UsuarioModel.php";
+    require_once __DIR__ . "/../models/ClienteModel.php";
+
     require_once __DIR__ . "/../helpers/token_jwt.php";
 
-    class authController{
+    class AuthController{
         public static function login($connect, $data){
+            ValidatorController::validate_data($data, ["email", "senha"]);
+
             $data['email'] = trim($data['email']);
             $data['senha'] = trim($data['senha']);
 
@@ -17,10 +22,9 @@
                 );
             }
             //informaçoes corretas
-            $user = UsuarioModel::validandoUsuario($connect,$data['email'], $data['senha']);
+            $user = UsuarioModel::validandoUsuario($connect, $data['email'], $data['senha']);
             if ($user){
                 $token = createToken($user);
-
                 return jsonResponse(["token" => $token]);
             }
             //erro no login
@@ -30,7 +34,10 @@
                     "menssagem"=>"Credenciais invalidas"], 401);
             }
         }
+
         public static function loginCliente($connect, $data){
+            ValidatorController::validate_data($data, ["email", "senha"]);
+
             $data['email'] = trim($data['email']);
             $data['senha'] = trim($data['senha']);
 
@@ -42,7 +49,7 @@
                 );
             }
             //informaçoes corretas
-            $user = ClienteModel::ValidandoCliente($connect,$data['email'], $data['senha']);
+            $user = ClienteModel::validandoCliente($connect, $data['email'], $data['senha']);
             if ($user){
                 $token = createToken($user);
 

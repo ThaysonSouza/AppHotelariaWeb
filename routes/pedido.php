@@ -3,6 +3,7 @@ require_once __DIR__ . "/../controllers/PedidoController.php";
  
 if ($_SERVER['REQUEST_METHOD'] === "GET"){
     $id = $seguimentos[2] ?? null;  
+
     if(isset($id)){
         PedidoController::buscarPorId($connect, $id);
     }else{
@@ -19,8 +20,12 @@ elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
     }  
 }
 elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
+    $user = validateTokenAPI("Cliente");
+
     $opcao = $seguimentos[2] ?? null;    
     $data = json_decode(file_get_contents('php://input'), true);
+    $data['cliente_id'] = $user["id"];
+    
     if($opcao == "OrdemReserva"){
         PedidoController::ordemPedido($connect, $data);
     }else{
