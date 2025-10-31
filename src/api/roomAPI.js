@@ -22,7 +22,7 @@ export async function quartosDisponivelRequest({ dataInicio, dataFim, qtd }) {
         data = null;
     }
     if (!response.ok) {
-        const msg = data?.menssage || "Falha ao  buscar quartos disponiveis!";
+        const msg = data?.mensagem || data?.message || data?.menssagem || "Falha ao buscar quartos disponíveis!";
         throw new Error(msg);
     }
     const quartos = Array.isArray(data?.Quartos)
@@ -61,7 +61,7 @@ export async function cadastrarQuarto(dados) {
     try { data = await response.json(); } catch { data = null; }
 
     if (!response.ok) {
-        const msg = data?.message || data?.mensagem || data?.menssagem || "Falha ao cadastrar quarto.";
+        const msg = data?.mensagem || data?.message || data?.menssagem || "Falha ao cadastrar quarto.";
         throw new Error(msg);
     }
     return data;

@@ -1,5 +1,4 @@
 <?php
-
 class FotoModel{
 
     public static function BuscarTodas($connect){
@@ -71,3 +70,4 @@ class FotoModel{
 }
 
 ?>
+

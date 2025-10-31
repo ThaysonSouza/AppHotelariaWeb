@@ -66,7 +66,7 @@ class UploadController{
             }
             $saves[] = [
                 "name" => $photoName,
-                "path" => "//uploads//" . $photoName,
+                "path" => "uploads/" . $photoName,
                 "type" => self::$typefiles[$mime]
             ];
         }
