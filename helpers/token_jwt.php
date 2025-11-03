@@ -30,18 +30,18 @@ function validateToken($token){
 function validateTokenAPI($typeRole){
     $headers = getallheaders();
     if(!isset($headers["Authorization"]) ){
-        jsonResponse(["messagem" => "Esta faltando o token"],401);
+        jsonResponse(["mensagem" => "Está faltando o token"],401);
         exit;
     }
     $token = str_replace("Bearer ", "", $headers["Authorization"]);
     $user = validateToken($token); 
     if(!$user){
-        jsonResponse(["messagem" => "O token esta invalido"],401);
+        jsonResponse(["mensagem" => "O token está inválido"],401);
         exit;
     }
     //aqui vai ser a logica de validar cargo
     if ($user['cargo'] != $typeRole){
-        jsonResponse(['mensagem' => "Usuario nao autorizado"], 401);
+        jsonResponse(['mensagem' => "Usuário não autorizado"], 401);
         exit;
     }
     return $user;

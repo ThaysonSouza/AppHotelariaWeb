@@ -57,7 +57,8 @@
             AND q.id NOT IN (
                 SELECT r.id_quarto_fk
                 FROM reservas r 
-                WHERE (r.dataFim >= ? AND r.dataInicio <=))";
+                WHERE (r.dataFim >= ? AND r.dataInicio <= ?)
+            )";
             $stmt = $connect->prepare($MYsql);
             $stmt->bind_param("iss",
                 $data["qtd"],

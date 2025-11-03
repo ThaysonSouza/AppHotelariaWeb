@@ -2,11 +2,10 @@
 require_once __DIR__ . "/../controllers/QuartoController.php";
 
 if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
-    $id = $segments[2] ?? null;
-    validateTokenAPI("Gerente");
-
+    $id = $segmentos[2] ?? null;
     if (isset($id)){
         if (is_numeric($id)){
+            validateTokenAPI("Gerente");
             quartoController::buscarPorId($connect, $id);
 
         }elseif($id === "disponivel"){ // cliente os disponiveis -> (API/ROOMS/DISPONIVEIS?)
@@ -19,12 +18,13 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
             jsonResponse(['mensagem' =>'Rota nao identificada'], 400);
         }
     }else{
+            validateTokenAPI("Gerente");
             quartoController::listarTodos($connect);
     }
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === "DELETE"){
-    $id = $segments[2] ?? null;
+    $id = $segmentos[2] ?? null;
     validateTokenAPI("Gerente");
 
     if(isset($id)){

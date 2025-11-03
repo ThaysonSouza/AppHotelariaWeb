@@ -51,9 +51,14 @@ export async function cadastrarQuarto(dados) {
         }
     }
 
+    const token = (await import('./authAPI.js')).getToken?.()
+        || (typeof window !== 'undefined' ? window.localStorage?.getItem('auth_token') : null)
+        || null;
+
     const response = await fetch("api/room", {
         method: "POST",
         body: form,
+        headers: token ? { "Authorization": `Bearer ${token}` } : undefined,
         credentials: "same-origin"
     });
 
